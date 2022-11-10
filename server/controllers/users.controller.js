@@ -2,7 +2,6 @@ import { pool } from "../db/conectionDB.js";
 
 const getUsuario = async (req, res) => {
 	try {
-		console.log(req.params.id);
 		const [result] = await pool.query(`SELECT * FROM usuarios WHERE numId='${req.params.id}'`);
 
 		if (result.length === 0) return res.status(404).json({ msg: `El usuario con id ${req.params.id} NO EXISTE.` });

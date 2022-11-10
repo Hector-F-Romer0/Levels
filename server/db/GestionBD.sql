@@ -21,14 +21,14 @@ idGenero int not null references generos(nombreGenero) on delete cascade,
 constraint PrimaryLlave primary key (ISRC, titulo));
 
 create table if not exists artistas (
-idArtista int not null, 
+idArtista int not null AUTO_INCREMENT, 
 nombres varchar(50) not null, 
 apellidos varchar(50) not null, 
 nombreArtistico varchar(25) not null, 
-fechasNacimiento date not null, 
+fechaNacimiento date not null, 
 lugarNacimiento varchar(30) not null, 
 fotoArtista varchar(80) not null, 
-constraint PrimariaArtista primary key (idArtista, nombreArtistico));
+constraint PrimariaArtista primary key (idArtista));
 
 create table if not exists generos (
 idGenero int not null AUTO_INCREMENT,
@@ -53,4 +53,6 @@ ISRC int not null references canciones(ISRC) on delete cascade,
 constraint PrimaryKeyAxC primary key (numId, ISRC));
 
 DROP TABLE usuarios;
+DROP TABLE generos;
+DROP TABLE artistas;
 
