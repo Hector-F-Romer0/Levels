@@ -2,6 +2,7 @@ import express from "express";
 import * as dotenv from "dotenv";
 
 import userRoutes from "./routes/users.routes.js";
+import genreRoutes from "./routes/genre.routes.js";
 
 // Configuraciones del servidor
 const app = express();
@@ -15,5 +16,6 @@ app.use(express.json());
 
 // Usa la ruta de Usuarios para la administración de estos. Antepone el prefijo '/api'
 app.use("/api", userRoutes);
+app.use("/api", genreRoutes);
 
 app.listen(port, () => console.log(`Server en línea en el puerto ${port} 🔥`));

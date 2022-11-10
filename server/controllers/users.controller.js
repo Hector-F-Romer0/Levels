@@ -21,7 +21,7 @@ const getUsuarios = async (req, res) => {
 
 		if (result.length === 0) return res.status(404).json({ msg: `No existen usuarios en la BD.` });
 
-		return res.status(200).json(result[0]);
+		return res.status(200).json(result);
 	} catch (error) {
 		return res.status(500).json({
 			msg: error.message,
@@ -54,12 +54,11 @@ const createUsuarios = async (req, res) => {
 
 const updateUsuarios = async (req, res) => {
 	try {
-		const { numId, nombres, apellidos, nombreUsuario, correo, contrasena, tipo } = req.body;
+		const { nombres, apellidos, nombreUsuario, correo, contrasena, tipo } = req.body;
 		const [result] = await pool.query(
-			"UPDATE usuarios SET numId = IFNULL(?,numId), nombres = IFNULL(?,nombres), apellidos = IFNULL(?,apellidos), nombreUsuario = IFNULL(?,nombreUsuario), correo = IFNULL(?,correo), contrasena = IFNULL(?,contrasena), tipo = IFNULL(?,tipo) WHERE numId = ?",
-			[numId, nombres, apellidos, nombreUsuario, correo, contrasena, tipo, req.params.id]
+			"UPDATE usuarios SET nombres = IFNULL(?,nombres), apellidos = IFNULL(?,apellidos), nombreUsuario = IFNULL(?,nombreUsuario), correo = IFNULL(?,correo), contrasena = IFNULL(?,contrasena), tipo = IFNULL(?,tipo) WHERE numId = ?",
+			[nombres, apellidos, nombreUsuario, correo, contrasena, tipo, req.params.id]
 		);
-
 		if (result.affectedRows === 0)
 			return res.status(404).json({
 				msg: `El usuario con id ${req.params.id} NO EXISTE.`,

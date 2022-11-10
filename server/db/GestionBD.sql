@@ -31,9 +31,9 @@ fotoArtista varchar(80) not null,
 constraint PrimariaArtista primary key (idArtista, nombreArtistico));
 
 create table if not exists generos (
-idGenero int not null,
+idGenero int not null AUTO_INCREMENT,
 nombreGenero varchar(50) not null,
-constraint PrimaryKeyGenero primary key (idGenero, nombreGenero));
+constraint PrimaryKeyGenero primary key(idGenero));
 
 create table if not exists albumes (
 idAlbum int not null primary key, 
@@ -54,7 +54,3 @@ constraint PrimaryKeyAxC primary key (numId, ISRC));
 
 DROP TABLE usuarios;
 
-SELECT * FROM usuarios;
-UPDATE usuarios SET tipo = IFNULL(null,tipo) WHERE numeroIdentificacion='1234567890';
-DELETE FROM usuarios WHERE numeroIdentificacion='1234567890';
-INSERT INTO usuarios VALUES(1234567890,'Juan Sebastian','Casas León','jSeb23','jscleon@gmail.com','123456','Usuario');
