@@ -13,7 +13,7 @@ const port = process.env.PORT;
 // Permite la lectura y parseo de los datos que se envíen en el body de la request.
 app.use(express.json());
 
-// Usa la ruta de Usuarios para la administración de estos
-app.use(userRoutes);
+// Usa la ruta de Usuarios para la administración de estos. Antepone el prefijo '/api'
+app.use("/api", userRoutes);
 
 app.listen(port, () => console.log(`Server en línea en el puerto ${port} 🔥`));

@@ -1,7 +1,30 @@
 import { pool } from "../db/conectionDB.js";
 
-const getUsuarios = (req, res) => {
-	res.send("Hola mundo - GET");
+const getUsuario = async (req, res) => {
+	try {
+		console.log(req.params.id);
+		const [result] = await pool.query(`SELECT * FROM usuarios WHERE numeroIdentificacion='${req.params.id}'`);
+
+		// Si el resultado es un array vacío, significa que no encontró un registro con el id mandada en la URL
+		if (result.length === 0) return res.status(404).json({ msg: `El usuario con id ${req.params.id} NO EXISTE.` });
+
+		return res.status(200).json(result[0]);
+	} catch (error) {
+		return res.status(500).json({
+			msg: error.message,
+		});
+	}
+};
+
+const getUsuarios = async (req, res) => {
+	try {
+		const [result] = await pool.query("SELECT * FROM usuarios");
+		return res.status(200).json(result);
+	} catch (error) {
+		return res.status(500).json({
+			msg: error.message,
+		});
+	}
 };
 
 const createUsuarios = async (req, res) => {
@@ -38,10 +61,4 @@ const deleteUsuarios = (req, res) => {
 	res.send("Hola mundo - delete");
 };
 
-// router.get("/ping", async (req, res) => {
-// 	// const [result] = await pool.query("SELECT 1 +1 AS RESULT");
-// 	const [result] = await pool.query("SHOW TABLES");
-// 	res.json(result);
-// });
-
-export { getUsuarios, createUsuarios, updateUsuarios, deleteUsuarios };
+export { getUsuario, getUsuarios, createUsuarios, updateUsuarios, deleteUsuarios };
