@@ -31,3 +31,6 @@ yarn-error.log*
 # /server/db/GestionBD.sql
 
 npx create-react-app levels
+
+
+git status  -> Mire

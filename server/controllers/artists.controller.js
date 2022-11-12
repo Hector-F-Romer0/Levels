@@ -31,6 +31,12 @@ const getArtistas = async (req, res) => {
 const createArtistas = async (req, res) => {
 	try {
 		const { nombres, apellidos, nombreArtistico, fechaNacimiento, lugarNacimiento, fotoArtista } = req.body;
+		// Se verifica en la BD si YA existe el artista en la BD.
+		const [existeArtista] = await pool.query(`SELECT * FROM artistas WHERE nombreArtistico = ?`, [nombreArtistico]);
+
+		// Si el artista existe en la base de datos, devuelve un mensaje y no crea el registro.
+		if (existeArtista.length > 0) return res.status(400).json({ msg: "El artista ya está creado en la BD." });
+
 		const [result] = await pool.query("INSERT INTO artistas VALUES (default,?,?,?,?,?,?)", [
 			nombres,
 			apellidos,

@@ -4,6 +4,8 @@ import * as dotenv from "dotenv";
 import userRoutes from "./routes/users.routes.js";
 import genreRoutes from "./routes/genre.routes.js";
 import artistsRoutes from "./routes/artists.routes.js";
+// import songsRoutes from "./routes/songs.routes.js";
+import albumesRoutes from "./routes/albums.routes.js";
 
 // Configuraciones del servidor y paquetes importados
 const app = express();
@@ -19,5 +21,7 @@ app.use(express.json());
 app.use("/api", userRoutes);
 app.use("/api", genreRoutes);
 app.use("/api", artistsRoutes);
+// app.use("/api", songsRoutes);
+app.use("/api", albumesRoutes);
 
 app.listen(port, () => console.log(`Server en línea en el puerto ${port} 🔥`));

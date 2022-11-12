@@ -2,6 +2,8 @@ SHOW TABLES;
 
 SELECT * FROM usuarios;
 SELECT * FROM generos;
+SELECT * FROM artistas;
+SELECT * FROM albumes;
 
 INSERT INTO usuarios VALUES(1234567890,'Juan Sebastian','Casas León','jSeb23','jscleon@gmail.com','123456','Usuario');
 INSERT INTO generos VALUES (default,'Merengue');

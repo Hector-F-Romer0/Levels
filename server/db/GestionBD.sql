@@ -1,33 +1,34 @@
 drop database if exists levels ;
 create database if not exists levels ;
 use levels;
-drop tables if exists levels ;
+SHOW TABLES;
 
 create table if not exists usuarios (
 numId int(10) not null primary key,
 nombres varchar(50) not null, 
 apellidos varchar(50) not null, 
 nombreUsuario varchar(25) not null, 
-correo varchar(30) not null, 
+correo varchar(50) not null, 
 contrasena varchar(15) not null, 
 tipo varchar(25) NOT NULL CHECK (Tipo = 'Admin' OR Tipo = 'Usuario'));
 
 create table if not exists canciones (
 ISRC varchar(12) not null, 
 titulo varchar(50) not null, 
-album varchar(25) null references albumes(idAlbum) on delete set null on update cascade, 
-añoLanzamiento date not null, 
-idGenero int not null references generos(nombreGenero) on delete cascade, 
+añoLanzamiento date not null,
+rutaCancion varchar(100) NOT NULL, 
+idGenero int not null references generos(nombreGenero) on delete cascade,
+idAlbum varchar(50) null references albumes(idAlbum) on delete set null on update cascade,  
 constraint PrimaryLlave primary key (ISRC, titulo));
 
 create table if not exists artistas (
 idArtista int not null AUTO_INCREMENT, 
 nombres varchar(50) not null, 
-apellidos varchar(50) not null, 
+apellidos varchar(50) null, 
 nombreArtistico varchar(25) not null, 
 fechaNacimiento date not null, 
-lugarNacimiento varchar(30) not null, 
-fotoArtista varchar(80) not null, 
+lugarNacimiento varchar(50) not null, 
+fotoArtista varchar(100) not null, 
 constraint PrimariaArtista primary key (idArtista));
 
 create table if not exists generos (
@@ -36,11 +37,13 @@ nombreGenero varchar(50) not null,
 constraint PrimaryKeyGenero primary key(idGenero));
 
 create table if not exists albumes (
-idAlbum int not null primary key, 
+idAlbum int not null AUTO_INCREMENT, 
 titulo varchar(50) not null, 
-fotoAlbum varchar(80) not null, 
-genero varchar(20) not null, 
-añoLanzamiento date not null);
+fotoAlbum varchar(100) not null, 
+fechaLanzamiento date not null,
+idGenero int not null,
+CONSTRAINT PkAlbum PRIMARY KEY(idAlbum),
+FOREIGN KEY(idGenero) REFERENCES generos(idGenero) ON DELETE CASCADE);
 
 create table if not exists artistaXCanciones (
 idArtista int not null references artistas(idArtista) on delete cascade,
@@ -55,4 +58,5 @@ constraint PrimaryKeyAxC primary key (numId, ISRC));
 DROP TABLE usuarios;
 DROP TABLE generos;
 DROP TABLE artistas;
+DROP TABLE albumes;
 
