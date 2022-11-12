@@ -1,3 +1,22 @@
 body{
-    background-color: blueviolet;
+    background-color: black;
+    color: white;
+    margin: auto;
+    align-items: center;
+    
+}
+header{
+    display: flex;
+    margin: 0;
+    background-color: gray;
+    border-radius: 0;
+    display: block;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+}
+nav {
+    list-style: none;
+    padding: 5px;
+    margin: 5px;
 }
