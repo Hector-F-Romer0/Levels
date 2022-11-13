@@ -5,7 +5,7 @@ import cors from "cors";
 import userRoutes from "./routes/users.routes.js";
 import genreRoutes from "./routes/genre.routes.js";
 import artistsRoutes from "./routes/artists.routes.js";
-// import songsRoutes from "./routes/songs.routes.js";
+import songsRoutes from "./routes/songs.routes.js";
 import albumesRoutes from "./routes/albums.routes.js";
 
 import { upload } from "./controllers/image.controller.js";
@@ -26,7 +26,7 @@ app.use(cors());
 app.use("/api", userRoutes);
 app.use("/api", genreRoutes);
 app.use("/api", artistsRoutes);
-// app.use("/api", songsRoutes);
+ app.use("/api", songsRoutes);
 app.use("/api", albumesRoutes);
 
 app.post("/api/uploads", upload, (req, res) => {
