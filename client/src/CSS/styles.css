@@ -18,7 +18,7 @@ header{
     font-family: system-ui;
  
 }
-nav {
+.nav {
     list-style: none;
     padding: 5px;
     margin: 5px;
@@ -26,17 +26,17 @@ nav {
     display: flex;
     
 }
-nav li{
+.nav li{
     margin-left: 70px;
     padding: 12px 0;
     position: relative;
 }
-nav li a {
+.nav li a {
     text-decoration: none;
     color:white;
     padding: 12px;
 }
-nav li a::before{
+.nav li a::before{
     display: block;
     content: '';
     width: 0%;
@@ -46,7 +46,7 @@ nav li a::before{
     position: absolute;
     transition: width 1s;
 }
-nav li a:hover::before{
+.nav li a:hover::before{
     width: 100%;
 }
 .Contenedor1{
