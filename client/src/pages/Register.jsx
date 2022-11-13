@@ -14,7 +14,7 @@ const Register = () => {
                 <p className='textRegis'>
                     Nombre
                 </p>
-                <input typeof='text' className='Regis' placeholder=' ej:Luis Miguel' id='Nombres' ></input>
+                <input typeof='text' className='Regis' placeholder=' ej:Luis Miguel' id='Nombres' {...register('Nombres')}></input>
 
                 <p className='textRegis'>
                     Apellidos
