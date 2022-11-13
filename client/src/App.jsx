@@ -5,7 +5,7 @@ import HomePage from "./pages/HomePage";
 import UserPage from "./pages/UserPage";
 import NotFoundPage from "./pages/NotFoundPage.jsx";
 import NavBar from "./components/NavBar";
-
+import Register from "./pages/Register.jsx";
 
 const App = () => {
   return (
@@ -16,6 +16,7 @@ const App = () => {
         <Route path="/user/" element={<UserPage />} />
         <Route path="/user/:id" element={<UserPage />} />
         <Route path="*" element={<NotFoundPage />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </BrowserRouter>
   );

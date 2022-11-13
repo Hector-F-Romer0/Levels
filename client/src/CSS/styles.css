@@ -96,7 +96,7 @@ body .Container2 {
 body .Contenedor2 .card {
   position: absolute;
   top: 40%;
-  width: 30%;
+  width: 70%;
   height: 400px;
   box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.2),
     inset -5px -5px 15px rgba(255, 255, 255, 0.1),
@@ -189,4 +189,44 @@ body .Contenedor2 .card .box .content a:hover {
    width: 50%;
    height: 30%;
    border-radius: 5px;
+}
+.Register{
+  align-items: center;
+  text-align: center;
+  margin: auto;
+  width: 80%;
+  margin-top: 50px;
+  padding: 15px;
+}
+.textRegis{
+  font-size: 30px;
+  padding: 15px;
+  font-family: "Poppins", sans-serif;
+}
+.Regis{
+  width: 50%;
+  font-family: "Poppins", sans-serif;
+}
+.Regis:hover{
+  width: 52%;
+}
+.BotonRegis{
+  margin-top: 15px;
+  background-color: #1ED65E;
+  color:white;
+  font-family: "Poppins", sans-serif;
+  padding: 15px;
+  width: 25%;
+  height: 65px;
+  font-size: 25px;
+  border-radius: 15px;
+  transition: all .7s ease;
+}
+.BotonRegis:hover{
+  width: 27%;
+  color:#1db954;
+  background-color: wheat;
+  border-color: #1db954;
+  transition: all .7s ease;
+  font-size: 27px;
 }
