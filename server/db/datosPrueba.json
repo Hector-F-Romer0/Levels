@@ -41,5 +41,13 @@
 	},
 	{
 		"nombreGenero": "Rock en español"
+	},
+	{
+		"ISRC": "Los mesoneros",
+		"titulo": "Tokyo",
+		"fechaLanzamiento": "2011-06-22",
+		"rutaCancion": "/tokyo.wav",
+		"idGenero": 1,
+		"idAlbum": 1
 	}
 ]

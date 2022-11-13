@@ -19,13 +19,13 @@ contrasena varchar(15) not null,
 tipo varchar(25) NOT NULL CHECK (Tipo = 'Admin' OR Tipo = 'Usuario'));
 
 create table if not exists canciones (
-ISRC varchar(12) not null, 
+isrc varchar(12) not null, 
 titulo varchar(50) not null, 
 fechaLanzamiento date not null,
 rutaCancion varchar(100) NOT NULL, 
 idGenero int not null references generos(nombreGenero) on delete cascade,
 idAlbum varchar(50) null references albumes(idAlbum) on delete set null on update cascade,  
-constraint PrimaryLlave primary key (ISRC, titulo));
+constraint PrimaryLlave primary key (isrc));
 
 create table if not exists artistas (
 idArtista int not null AUTO_INCREMENT, 

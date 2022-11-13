@@ -4,7 +4,8 @@ const getCancion = async (req, res) => {
 	try {
 		const [result] = await pool.query(`SELECT * FROM canciones WHERE ISRC='${req.params.id}'`);
 
-		if (result.length === 0) return res.status(404).json({ msg: `La canción con ISRC ${req.params.id} NO EXISTE.` });
+		if (result.length === 0)
+			return res.status(404).json({ msg: `La canción con ISRC ${req.params.id} NO EXISTE.` });
 
 		return res.status(200).json(result[0]);
 	} catch (error) {
@@ -28,26 +29,27 @@ const getCanciones = async (req, res) => {
 	}
 };
 
-const createCanciones = async (req, res) => {
+const createCancion = async (req, res) => {
 	try {
-		const { ISRC, titulo, añoLanzamiento, rutacancion, idGenero, idAlbum } = req.body;
+		const { isrc, titulo, fechaLanzamiento, rutaCancion, idGenero, idAlbum } = req.body;
+		console.log(req.body);
 		// Se verifica en la BD si YA existe la canción en la BD.
-		const [existeCancion] = await pool.query(`SELECT * FROM canciones WHERE ISRC = ?`, [ISRC]);
+		const [existeCancion] = await pool.query(`SELECT * FROM canciones WHERE isrc = ?`, [isrc]);
 
 		// Si la canción existe en la base de datos, devuelve un mensaje y no crea el registro.
 		if (existeCancion.length > 0) return res.status(400).json({ msg: "La canción ya está creada en la BD." });
 
-		const [result] = await pool.query("INSERT INTO canciones VALUES (?,?,?,?,?,?,?)", [
-			ISRC,
+		const [result] = await pool.query("INSERT INTO canciones VALUES (?,?,?,?,?,?)", [
+			isrc,
 			titulo,
 			fechaLanzamiento,
-			rutacancion,
+			rutaCancion,
 			idGenero,
-			idAlbum
+			idAlbum,
 		]);
 
 		return res.status(200).json({
-			msg: `Insersión del artista ${nombreArtistico} CORRECTO.`,
+			msg: `Inserción de la canción ${titulo} CORRECTOA.`,
 		});
 	} catch (error) {
 		return res.status(500).json({
@@ -56,13 +58,14 @@ const createCanciones = async (req, res) => {
 	}
 };
 
-const updateCanciones = async (req, res) => {
+const updateCancion = async (req, res) => {
 	try {
-		const { nombres, apellidos, nombreArtistico, fechaNacimiento, lugarNacimiento, fotoArtista } = req.body;
+		const { isrc, titulo, fechaLanzamiento, rutaCancion, idGenero, idAlbum } = req.body;
 		console.log(req.body);
+		console.log(req.params.id);
 		const [result] = await pool.query(
-			"UPDATE canciones SET nombres = IFNULL(?,nombres), apellidos = IFNULL(?,apellidos), nombreArtistico = IFNULL(?,nombreArtistico), fechaNacimiento = IFNULL(?,fechaNacimiento), lugarNacimiento = IFNULL(?,lugarNacimiento), fotoArtista = IFNULL(?,fotoArtista) WHERE idArtista = ?",
-			[nombres, apellidos, nombreArtistico, fechaNacimiento, lugarNacimiento, fotoArtista, req.params.id]
+			"UPDATE canciones SET titulo = IFNULL(?,titulo), fechaLanzamiento = IFNULL(?,fechaLanzamiento), rutaCancion = IFNULL(?,rutaCancion), idGenero = IFNULL(?,idGenero), idAlbum = IFNULL(?,idAlbum) WHERE isrc = ?",
+			[titulo, fechaLanzamiento, rutaCancion, idGenero, idAlbum, req.params.id]
 		);
 		if (result.affectedRows === 0)
 			return res.status(404).json({
@@ -79,9 +82,10 @@ const updateCanciones = async (req, res) => {
 	}
 };
 
-const eliminarCanciones = async (req, res) => {
+const eliminarCancion = async (req, res) => {
 	try {
-		const [result] = await pool.query(`DELETE FROM artistas WHERE idArtista='${req.params.id}'`);
+		console.log(req.params.id);
+		const [result] = await pool.query(`DELETE FROM canciones WHERE isrc='${req.params.id}'`);
 
 		if (result.affectedRows === 0)
 			return res.status(404).json({ msg: `Elartistas con id ${req.params.id} NO EXISTE.` });
@@ -94,4 +98,4 @@ const eliminarCanciones = async (req, res) => {
 	}
 };
 
-export { getCancion, getCanciones, createCanciones, updateCanciones, eliminarCanciones };
+export { getCancion, getCanciones, createCancion, updateCancion, eliminarCancion };

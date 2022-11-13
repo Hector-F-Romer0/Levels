@@ -26,7 +26,7 @@ app.use(cors());
 app.use("/api", userRoutes);
 app.use("/api", genreRoutes);
 app.use("/api", artistsRoutes);
- app.use("/api", songsRoutes);
+app.use("/api", songsRoutes);
 app.use("/api", albumesRoutes);
 
 app.post("/api/uploads", upload, (req, res) => {
