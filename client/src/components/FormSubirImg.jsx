@@ -1,11 +1,14 @@
 import React from "react";
+import axios from "axios";
+
 import { useState } from "react";
 
 const FormSubirImg = () => {
+	const beURL = "http://localhost:4000/api/uploads";
+
 	const [imagen, setImagen] = useState();
 
 	const selectedImg = (e) => {
-		// const file = e.files.target[0];
 		console.log(e.target.files[0]);
 		setImagen(e.target.files[0]);
 	};
@@ -18,10 +21,12 @@ const FormSubirImg = () => {
 		const formdata = new FormData();
 		formdata.append("testImg", imagen);
 
-		fetch("http://localhost:4000/image", {
-			method: "POST",
-			body: formdata,
-		});
+		axios.post(beURL, formdata);
+
+		// fetch("http://localhost:4000/api/uploads", {
+		// 	method: "POST",
+		// 	body: formdata,
+		// });
 
 		setImagen(null);
 	};

@@ -12,3 +12,6 @@ UPDATE usuarios SET tipo = IFNULL(null,tipo) WHERE numeroIdentificacion='1234567
 UPDATE generos SET nombreGenero = IFNULL('Electrónica', nombreGenero) WHERE idGenero = '1';
 
 DELETE FROM usuarios WHERE numeroIdentificacion='1234567890';
+
+# 7. El proyecto de aplicación web debe permitir al usuario buscar canciones por artista. 
+SELECT * FROM canciones WHERE id="";

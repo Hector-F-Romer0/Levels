@@ -29,9 +29,8 @@ app.use("/api", artistsRoutes);
 // app.use("/api", songsRoutes);
 app.use("/api", albumesRoutes);
 
-app.post("/image", upload, (req, res) => {
-	console.log(req.file);
-	res.send("Subido con éxito");
+app.post("/api/uploads", upload, (req, res) => {
+	console.log(req.file.filename);
 });
 
 app.listen(port, () => console.log(`Server en línea en el puerto ${port} 🔥`));

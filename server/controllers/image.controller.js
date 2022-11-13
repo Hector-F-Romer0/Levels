@@ -7,12 +7,13 @@ const __dirname = path.dirname(__filename);
 
 // Configuraciones de cómo se guardarán los archivos
 const storage = multer.diskStorage({
-	destination: path.join(__dirname, "../db/src/"),
+	destination: path.resolve(__dirname, "../db/uploads/"),
 	filename: (req, file, cb) => {
-		cb(null, `${Date.now()} - ${file.originalname}`);
+		cb(null, `${Date.now()}-${file.originalname}`);
 	},
 });
 
+// Especificamos que se subirá un solo archivo que tenga el id de 'testImg'
 const upload = multer({ storage: storage }).single("testImg");
 
 export { upload };
