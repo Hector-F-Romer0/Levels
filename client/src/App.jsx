@@ -1,16 +1,22 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import React from "react";
-import FormSubirImg from "./components/FormSubirImg";
+
+import HomePage from "./pages/HomePage";
+import UserPage from "./pages/UserPage";
+import NotFoundPage from "./pages/NotFoundPage.jsx";
+import NavBar from "./components/NavBar";
 
 const App = () => {
 	return (
-		<>
-			<h1>Hola</h1>
-			<p>
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat fugit alias non quaerat a, optio odio
-				beatae ipsa nihil, quia qui incidunt atque magnam quisquam minima rem aliquam possimus. Repellendus?
-			</p>
-			<FormSubirImg />
-		</>
+		<BrowserRouter>
+			<NavBar />
+			<Routes>
+				<Route path="/" element={<HomePage />} />
+				<Route path="/user/" element={<UserPage />} />
+				<Route path="/user/:id" element={<UserPage />} />
+				<Route path="*" element={<NotFoundPage />} />
+			</Routes>
+		</BrowserRouter>
 	);
 };
 
