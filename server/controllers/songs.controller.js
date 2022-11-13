@@ -61,7 +61,7 @@ const updateCanciones = async (req, res) => {
 		const { nombres, apellidos, nombreArtistico, fechaNacimiento, lugarNacimiento, fotoArtista } = req.body;
 		console.log(req.body);
 		const [result] = await pool.query(
-			"UPDATE artistas SET nombres = IFNULL(?,nombres), apellidos = IFNULL(?,apellidos), nombreArtistico = IFNULL(?,nombreArtistico), fechaNacimiento = IFNULL(?,fechaNacimiento), lugarNacimiento = IFNULL(?,lugarNacimiento), fotoArtista = IFNULL(?,fotoArtista) WHERE idArtista = ?",
+			"UPDATE canciones SET nombres = IFNULL(?,nombres), apellidos = IFNULL(?,apellidos), nombreArtistico = IFNULL(?,nombreArtistico), fechaNacimiento = IFNULL(?,fechaNacimiento), lugarNacimiento = IFNULL(?,lugarNacimiento), fotoArtista = IFNULL(?,fotoArtista) WHERE idArtista = ?",
 			[nombres, apellidos, nombreArtistico, fechaNacimiento, lugarNacimiento, fotoArtista, req.params.id]
 		);
 		if (result.affectedRows === 0)
