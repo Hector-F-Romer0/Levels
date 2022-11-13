@@ -1,10 +1,10 @@
 import { pool } from "../db/conectionDB.js";
 
-const getArtista = async (req, res) => {
+const getCancion = async (req, res) => {
 	try {
-		const [result] = await pool.query(`SELECT * FROM artistas WHERE idArtista='${req.params.id}'`);
+		const [result] = await pool.query(`SELECT * FROM canciones WHERE ISRC='${req.params.id}'`);
 
-		if (result.length === 0) return res.status(404).json({ msg: `El artista con id ${req.params.id} NO EXISTE.` });
+		if (result.length === 0) return res.status(404).json({ msg: `La canción con ISRC ${req.params.id} NO EXISTE.` });
 
 		return res.status(200).json(result[0]);
 	} catch (error) {
@@ -14,11 +14,11 @@ const getArtista = async (req, res) => {
 	}
 };
 
-const getArtistas = async (req, res) => {
+const getCanciones = async (req, res) => {
 	try {
-		const [result] = await pool.query("SELECT * FROM artistas");
+		const [result] = await pool.query("SELECT * FROM canciones");
 
-		if (result.length === 0) return res.status(404).json({ msg: `No existen artistas en la BD.` });
+		if (result.length === 0) return res.status(404).json({ msg: `No existen canciones en la BD.` });
 
 		return res.status(200).json(result);
 	} catch (error) {
@@ -28,22 +28,22 @@ const getArtistas = async (req, res) => {
 	}
 };
 
-const createArtistas = async (req, res) => {
+const createCanciones = async (req, res) => {
 	try {
-		const { nombres, apellidos, nombreArtistico, fechaNacimiento, lugarNacimiento, fotoArtista } = req.body;
-		// Se verifica en la BD si YA existe el artista en la BD.
-		const [existeArtista] = await pool.query(`SELECT * FROM artistas WHERE nombreArtistico = ?`, [nombreArtistico]);
+		const { ISRC, titulo, añoLanzamiento, rutacancion, idGenero, idAlbum } = req.body;
+		// Se verifica en la BD si YA existe la canción en la BD.
+		const [existeCancion] = await pool.query(`SELECT * FROM canciones WHERE ISRC = ?`, [ISRC]);
 
-		// Si el artista existe en la base de datos, devuelve un mensaje y no crea el registro.
-		if (existeArtista.length > 0) return res.status(400).json({ msg: "El artista ya está creado en la BD." });
+		// Si la canción existe en la base de datos, devuelve un mensaje y no crea el registro.
+		if (existeCancion.length > 0) return res.status(400).json({ msg: "La canción ya está creada en la BD." });
 
-		const [result] = await pool.query("INSERT INTO artistas VALUES (default,?,?,?,?,?,?)", [
-			nombres,
-			apellidos,
-			nombreArtistico,
-			fechaNacimiento,
-			lugarNacimiento,
-			fotoArtista,
+		const [result] = await pool.query("INSERT INTO canciones VALUES (?,?,?,?,?,?,?)", [
+			ISRC,
+			titulo,
+			fechaLanzamiento,
+			rutacancion,
+			idGenero,
+			idAlbum
 		]);
 
 		return res.status(200).json({
@@ -56,7 +56,7 @@ const createArtistas = async (req, res) => {
 	}
 };
 
-const updateArtistas = async (req, res) => {
+const updateCanciones = async (req, res) => {
 	try {
 		const { nombres, apellidos, nombreArtistico, fechaNacimiento, lugarNacimiento, fotoArtista } = req.body;
 		console.log(req.body);
@@ -79,7 +79,7 @@ const updateArtistas = async (req, res) => {
 	}
 };
 
-const eliminarArtista = async (req, res) => {
+const eliminarCanciones = async (req, res) => {
 	try {
 		const [result] = await pool.query(`DELETE FROM artistas WHERE idArtista='${req.params.id}'`);
 
@@ -94,4 +94,4 @@ const eliminarArtista = async (req, res) => {
 	}
 };
 
-export { getArtista, getArtistas, createArtistas, updateArtistas, eliminarArtista };
+export { getCancion, getCanciones, createCanciones, updateCanciones, eliminarCanciones };
