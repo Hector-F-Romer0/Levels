@@ -31,6 +31,12 @@ const getArtistas = async (req, res) => {
 const createArtistas = async (req, res) => {
 	try {
 		const { nombres, apellidos, nombreArtistico, fechaNacimiento, lugarNacimiento, fotoArtista } = req.body;
+		// Se verifica en la BD si YA existe el artista en la BD.
+		const [existeArtista] = await pool.query(`SELECT * FROM artistas WHERE nombreArtistico = ?`, [nombreArtistico]);
+
+		// Si el artista existe en la base de datos, devuelve un mensaje y no crea el registro.
+		if (existeArtista.length > 0) return res.status(400).json({ msg: "El artista ya está creado en la BD." });
+
 		const [result] = await pool.query("INSERT INTO artistas VALUES (default,?,?,?,?,?,?)", [
 			nombres,
 			apellidos,
@@ -40,7 +46,7 @@ const createArtistas = async (req, res) => {
 			fotoArtista,
 		]);
 
-		return res.status(200).json({
+		return res.status(201).json({
 			msg: `Insersión del artista ${nombreArtistico} CORRECTO.`,
 		});
 	} catch (error) {
@@ -53,18 +59,17 @@ const createArtistas = async (req, res) => {
 const updateArtistas = async (req, res) => {
 	try {
 		const { nombres, apellidos, nombreArtistico, fechaNacimiento, lugarNacimiento, fotoArtista } = req.body;
-		console.log(req.body);
 		const [result] = await pool.query(
-			"UPDATE artistas SET nombres = IFNULL(?,nombres), apellidos = IFNULL(?,apellidos), nombreArtistico = IFNULL(?,nombreArtistico), fechaNacimiento = IFNULL(?,fechaNacimiento), lugarNacimiento = IFNULL(?,lugarNacimiento), fotoArtista = IFNULL(?,fotoArtista) WHERE idArtista = ?",
+			"UPDATE artista SET ISRC = IFNULL(?,ISRC), titulo = IFNULL(?,titulo), fechaLanzamiento = IFNULL(?,fechaLanzamiento), rutaCancion = IFNULL(?,rutaCancion), idGenero = IFNULL(?,idGenero), idAlbum = IFNULL(?,idAlbum) WHERE ISRC = ?",
 			[nombres, apellidos, nombreArtistico, fechaNacimiento, lugarNacimiento, fotoArtista, req.params.id]
 		);
 		if (result.affectedRows === 0)
 			return res.status(404).json({
-				msg: `El artista con id ${req.params.id} NO EXISTE.`,
+				msg: `La canción con id ${req.params.id} NO EXISTE.`,
 			});
 
 		return res.status(203).json({
-			msg: `Actualización del artista con id ${req.params.id} CORRECTO.`,
+			msg: `Actualización del canción con id ${req.params.id} CORRECTO.`,
 		});
 	} catch (error) {
 		return res.status(500).json({
@@ -75,12 +80,12 @@ const updateArtistas = async (req, res) => {
 
 const eliminarArtista = async (req, res) => {
 	try {
-		const [result] = await pool.query(`DELETE FROM artistas WHERE idArtista='${req.params.id}'`);
+		const [result] = await pool.query(`DELETE FROM canciones WHERE ISRC='${req.params.id}'`);
 
 		if (result.affectedRows === 0)
-			return res.status(404).json({ msg: `Elartistas con id ${req.params.id} NO EXISTE.` });
+			return res.status(404).json({ msg: `La canción con ISRC ${req.params.id} NO EXISTE.` });
 
-		return res.status(200).json({ msg: `Eliminación del artistas con id ${req.params.id} CORRECTA.` });
+		return res.status(200).json({ msg: `Eliminación de la canción con ISRC ${req.params.id} CORRECTA.` });
 	} catch (error) {
 		return res.status(500).json({
 			msg: error.message,
