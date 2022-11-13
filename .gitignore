@@ -28,9 +28,6 @@ yarn-error.log*
 
 # IGNORANDO RUTAS DEL SERVER
 /server/node_modules
-# /server/db/GestionBD.sql
-
-npx create-react-app levels
+/server/db/src/
 
 
-git status  -> Mire
