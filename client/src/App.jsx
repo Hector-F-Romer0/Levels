@@ -6,6 +6,7 @@ import UserPage from "./pages/UserPage";
 import NotFoundPage from "./pages/NotFoundPage.jsx";
 import NavBar from "./components/NavBar";
 
+
 const App = () => {
   return (
     <BrowserRouter>
