@@ -6,11 +6,13 @@ import UserPage from "./pages/UserPage";
 import NotFoundPage from "./pages/NotFoundPage.jsx";
 import NavBar from "./components/NavBar";
 import Register from "./pages/Register.jsx";
+import Footer from "./components/Footer";
 
 const App = () => {
   return (
     <BrowserRouter>
       <NavBar />
+      
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/user/" element={<UserPage />} />
@@ -18,6 +20,7 @@ const App = () => {
         <Route path="*" element={<NotFoundPage />} />
         <Route path="/register" element={<Register />} />
       </Routes>
+      <Footer/>
     </BrowserRouter>
   );
 };
