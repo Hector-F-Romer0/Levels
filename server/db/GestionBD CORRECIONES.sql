@@ -3,8 +3,8 @@
 --
 
 drop database if exists levels ;
-create database if not exists levels ;
-use levels;
+create database if not exists levels2 ;
+use levels2;
 SHOW TABLES;
 
 -- ------------------------------------------------------------------------------------------------
@@ -82,7 +82,7 @@ INSERT INTO usuarios VALUES
 ("1234567890", "Eduardo", "Manos Tijeras", "TijeritasMini", "tijeritas@gmail.com", "1111", "Usuario"),
 ("0987654321", "Pedro", "Manos Cuchillas", "Cuchillitas", "cuchilloPro@gmail.com", "1987", "Admin");
 
--- nombres, apellidos, nombreArtistico, fechaNacimiento, lugarNacimiento, fotoArtista
+-- nombres, apellidos, nombreArtistico, fechaNacimiento, lugarNacimiento, fotoArtista,
 INSERT INTO artistas (nombres, apellidos, nombreArtistico, fechaNacimiento, lugarNacimiento, fotoArtista)
 VALUES 
 ("Benito Antonio", "Martínez Ocasio", "Bad Bunny", "1994-03-10", "Almirante Sur, Puerto Rico", "Bad Bunny.jpg"),
@@ -99,11 +99,11 @@ VALUES
 ("Salsa"),
 ("Rock");
 
--- titulo, fotoAlbum, fechaLanzamiento, idGenero,
-INSERT INTO albumes (titulo, fotoAlbum, fechaLanzamiento, idGenero)
+-- titulo, fotoAlbum, fechaLanzamiento, idGenero, discografia 
+INSERT INTO albumes (titulo, fotoAlbum, fechaLanzamiento, idGenero, discografia)
 VALUES
-("El Último Tour Del Mundo", "El Último Tour Del Mundo.jpg", "2020-11-27", "1"),
-("Un Verano Sin Tí", "Un Verano Sin Tí.jpg", "2022-05-06", "1"),
+("El Último Tour Del Mundo", "El Último Tour Del Mundo.jpg", "2020-11-27", "1",'Rimas Entertainment'),
+("Un Verano Sin Tí", "Un Verano Sin Tí.jpg", "2022-05-06", "1",'Rimas Entertainment'),
 ("YHLQMDLG", "YHLQMDLG.jpg", "2020-02-29", "1"),
 ("Cielo De Tambores", "Cielo De Tambores.jpg", "1990-12-20", "3"),
 ("Huellas Del Pasado", "Huellas Del Pasado.jpg", "1995-03-31", "3"),
@@ -118,12 +118,12 @@ VALUES
 ("Encanto Tropical", "Encanto Tropical.jpg", "2018-05-18", "2"),
 ("Hecho A Mano", "Hecho A Mano.jpg", "2012-05-20", "2");
 
-INSERT INTO canciones VALUES
--- ISRC, titulo, fechaLanzamiento, rutacancion, idGenero, idAlbum
+-- ISRC, titulo, fechaLanzamiento, rutacancion, idGenero, idAlbum, duracion, fechaInsercion 
 -- EL ÚLTIMO TOUR DEL MUNDO
 -- "2020-11-27"
-("QMFME2066848", "120", "2020-11-27", "120.wav", 1, 1),
-("QMFME2066849", "ANTES QUE SE ACABE", "2020-11-27", "ANTES QUE SE ACABE.wav", 1, 1),
+INSERT INTO canciones VALUES
+("QMFME2066848", "120", "2020-11-27", "QMFME2066848.wav", 1, 1,'2:32',default),
+("QMFME2066849", "ANTES QUE SE ACABE", "2020-11-27","QMFME2066849.wav" , 1, 1,'3:41',default),
 ("QMFME2066844", "BOOKER T", "2020-11-27", "BOOKER T.wav", 1, 1),
 ("QMFME2066836", "EL MUNDO ES MÍO", "2020-11-27", "EL MUNDO ES MÍO.wav", 1, 1),
 ("QMFME2066843", "HACIENDO QUE ME AMAS", "2020-11-27", "HACIENDO QUE ME AMAS.wav", 1, 1),
