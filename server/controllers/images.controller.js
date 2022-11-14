@@ -14,12 +14,25 @@ const storage = multer.diskStorage({
 	},
 });
 
-// filename: (req, file, cb) => {
-// 	cb(null, `${Date.now()}-${file.originalname}`);
-// },
+const filtrarSoloImagenes = (req, file, cb) => {
+	const ext = path.extname(file.originalname);
+	if (ext !== ".png" && ext !== ".jpg" && ext !== ".gif" && ext !== ".jpeg") {
+		return callback(new Error("Las imágenes debe estar en formato .png, .jpg, .jpeg o .gif"));
+	}
+	callback(null, true);
+};
+
+const filtrarSoloAudios = (req, file, cb) => {
+	const ext = path.extname(file.originalname);
+	if (ext !== ".mp3" && ext !== ".wav") {
+		return callback(new Error("La canción debe estar en formato .wav o .mp3"));
+	}
+	callback(null, true);
+};
 
 // Especificamos que se subirá un solo archivo que tenga el id de 'testImg'
-const upload = multer({ storage: storage }).single("testImg");
+const uploadImage = multer({ storage: storage, fileFilter: filtrarSoloImagenes }).single("testImg");
+const uploadAudio = multer({ storage: storage, fileFilter: filtrarSoloAudios }).single("testAudio");
 
 // * CONFIGURACIONES DEL ACCESO A LA IMAGEN
 const getImagen = async (req, res) => {
@@ -36,4 +49,4 @@ const getImagen = async (req, res) => {
 	}
 };
 
-export { upload, getImagen };
+export { uploadAudio, uploadImage, getImagen };

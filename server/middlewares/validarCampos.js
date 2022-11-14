@@ -1,7 +1,6 @@
 import { validationResult } from "express-validator";
 
 const validarCampos = (req, res, next) => {
-	console.log("hola");
 	const errors = validationResult(req);
 
 	if (!errors.isEmpty()) {

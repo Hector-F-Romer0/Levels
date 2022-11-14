@@ -29,8 +29,8 @@ const getUsuarios = async (req, res) => {
 };
 
 const createUsuarios = async (req, res) => {
+	console.log(req.body);
 	const { numId, nombres, apellidos, nombreUsuario, correo, contrasena, tipoUsuario } = req.body;
-
 	// // Verificación de existencia en la BD
 	// const [existeUsuario] = await pool.query(`SELECT * FROM usuarios WHERE numId = ?`, [numId]);
 	// // Si la canción existe en la base de datos, devuelve un mensaje y no crea el registro.

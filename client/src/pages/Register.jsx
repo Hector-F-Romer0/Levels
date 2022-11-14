@@ -12,6 +12,9 @@ const Register = () => {
 	} = useForm();
 
 	const api = async (data) => {
+		console.log("Antes del await a la req");
+
+		console.log(data);
 		const a = await crearUsuarioRequest(data);
 		return a;
 	};
