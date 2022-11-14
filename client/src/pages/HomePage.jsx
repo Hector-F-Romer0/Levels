@@ -5,10 +5,12 @@ import Songs from "../components/Songs";
 
 const HomePage = () => {
 	return (
-		<div className='Contenedor1'>
-			<input typeof='text' className='Buscador' placeholder='Buscar'></input>
-			<FormSubirImg />
-			<Songs />
+		<div className="">
+			{/* <FormSubirImg /> */}
+			<dir className="container">
+				<Songs />
+				<Songs />
+			</dir>
 		</div>
 	);
 };

@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react";
 
 const Body = () => {
-    return (
-        <div className='Contenedor1'>
-            <input typeof='text' className='Buscador' placeholder='Buscar'></input>
-        </div>
-    )
-}
+	return (
+		<div className="Contenedor1">
+			<input type="text" className="Buscador" placeholder="Buscar"></input>
+		</div>
+	);
+};
 
-export default Body
+export default Body;
