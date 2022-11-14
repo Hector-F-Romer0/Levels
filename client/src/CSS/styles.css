@@ -230,3 +230,49 @@ body .Contenedor2 .card .box .content a:hover {
   transition: all .7s ease;
   font-size: 27px;
 }
+.Login{
+  align-items: center;
+  text-align: center;
+  margin: auto;
+  width: 80%;
+  margin-top: 50px;
+  padding: 15px;
+}
+.LoginHolder{
+  height: 60px;
+  width: 50%;
+  font-family: "Poppins", sans-serif;
+  font-size: 40px;
+}
+.LoginHolder:hover{
+  width: 52%;
+}
+.LoginText{
+  font-size: 50px;
+  padding: 15px;
+  font-family: "Poppins", sans-serif;
+}
+.LoginBtn{
+  margin-top: 15px;
+  background-color: #1ED65E;
+  color:white;
+  font-family: "Poppins", sans-serif;
+  padding: 15px;
+  width: 25%;
+  height: 65px;
+  font-size: 25px;
+  border-radius: 15px;
+  transition: all .7s ease;
+}
+.LoginBtn:Hover{
+  width: 27%;
+  color:#1db954;
+  background-color: wheat;
+  border-color: #1db954;
+  transition: all .7s ease;
+  font-size: 27px;
+}
+.Error{
+  padding: 15px;
+  color: red;
+}

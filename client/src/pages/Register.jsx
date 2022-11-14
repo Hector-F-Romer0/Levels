@@ -11,35 +11,44 @@ const Register = () => {
     return (
         <div className='Register'>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <p className='textRegis'>
-                    Nombre
-                </p>
-                <input type='text' className='Regis' placeholder=' ej:Luis Miguel' id='Nombres' {...register('Nombres')} />
-                {errors.Nombres.type}
-                <p className='textRegis'>
+                <label className='textRegis'>
+                    Nombres
+                </label><br></br>
+                <input type='text' className='Regis' placeholder=' ej:Luis Miguel' id='nombres' {...register('nombres', {
+                    required: true,
+                    maxLength: 50
+                })} />
+                {errors.nombres?.type === 'required' && <p className='Error'>El campo Nombres es requerido</p>}{errors.nombres?.type === 'maxLength' && <p className='Error'>El campo Nombres no debe de tener más de 50 letras</p>}<br></br>
+                <label className='textRegis'>
                     Apellidos
-                </p>
-                <input type='text' className='Regis' placeholder=' ej:Rodriguez Muñoz' id='Apellidos' {...register('Apellidos')}></input>
-                <p className='textRegis'>
+                </label><br></br>
+                <input type='text' className='Regis' placeholder=' ej:Rodriguez Muñoz' id='apellidos' {...register('apellidos', {
+                    required: true,
+                    maxLength: 50
+                })}></input>
+                {errors.apellidos?.type === 'required' && <p className='Error'>El campo Apellidos es requerido</p>}{errors.apellidos?.type === 'maxLength' && <p className='Error'>El campo Apellidos no debe de tener más de 50 letras</p>}
+                <br></br>
+                <label className='textRegis'>
                     Documento de identidad
-                </p>
-                <input type='text' className='Regis' placeholder=' ej:1005785804' id='Id' {...register('Id')}></input>
-                <p className='textRegis'>
+                </label><br></br>
+                <input type='text' className='Regis' placeholder=' ej:1005785804' id='id' {...register('id', { required: true })}></input>
+                {errors.id?.type === 'required' && <p className='Error'>El campo Documento de identidad es requerido</p>}<br></br>
+                <label className='textRegis'>
                     Nombre de usuario
-                </p>
-                <input type='text' className='Regis' placeholder=' ej:xXPepito123proXx' id='Usuario'></input>
-                <p className='textRegis' {...register('Usuario')}>
+                </label><br></br>
+                <input type='text' className='Regis' placeholder=' ej:xXPepito123proXx' id='usuario' {...register('usuario', { required: true })}></input>
+                {errors.usuario?.type === 'required' && <p className='Error'>El campo Nombre de Usuario es requerido</p>}<br></br>
+                <label className='textRegis'>
                     Correo
-                </p>
-                <input type='text' className='Regis' placeholder=' ej:TerminatorHansolo@gmail.com' id='Email' {...register('Email')}></input>
-                <p className='textRegis'>
+                </label><br></br>
+                <input type='text' className='Regis' placeholder=' ej:TerminatorHansolo@gmail.com' id='email' {...register('email', { required: true })}></input>
+                {errors.email?.type === 'required' && <p className='Error'>El campo Correo es requerido</p>}<br></br>
+                <label className='textRegis'>
                     Contraseña
-                </p>
-                <input type='text' className='Regis' placeholder=' ej:Contraseña123' id='Contrasena'></input>
-                <p className='textRegis' {...register('Contrasena')}>
-                    Repetir contraseña
-                </p>
-                <input type='text' className='Regis' placeholder=' Repite la contraseña' id='ConfirmarContrasena' {...register('ContrasenaX2')}></input><br></br>
+                </label><br></br>
+                <input type='text' className='Regis' placeholder=' ej:Contraseña123' id='contrasena' {...register('contrasena', { required: true })}></input>
+                {errors.contrasena?.type === 'required' && <p className='Error'>El campo Contraseña es requerido</p>}
+                <br></br>
                 <input type="Submit" className='BotonRegis' value="Registrarse" />
             </form>
         </div>
