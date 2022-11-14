@@ -1,13 +1,17 @@
-import React from 'react'
+import React from "react";
 import { useForm } from "react-hook-form";
 
 const Register = () => {
-
-    const { register, formState: { errors }, handleSubmit } = useForm();
+    // Useamos el hook userForm(). register permite registrar los campos y crear validaciones
+    const {
+        register,
+        formState: { errors },
+        handleSubmit,
+    } = useForm();
 
     const onSubmit = (data) => {
-        console.log(data)
-    }
+        console.log(data);
+    };
     return (
         <div className='Register'>
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -55,4 +59,4 @@ const Register = () => {
     )
 }
 
-export default Register
+export default Register;
