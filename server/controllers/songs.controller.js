@@ -17,7 +17,7 @@ const getCancion = async (req, res) => {
 
 const getCanciones = async (req, res) => {
 	try {
-		const [result] = await pool.query("SELECT * FROM canciones");
+		const [result] = await pool.query("SELECT * FROM canciones LIMIT 10");
 
 		if (result.length === 0) return res.status(404).json({ msg: `No existen canciones en la BD.` });
 
@@ -49,7 +49,7 @@ const createCancion = async (req, res) => {
 		]);
 
 		return res.status(200).json({
-			msg: `Inserción de la canción ${titulo} CORRECTOA.`,
+			msg: `Inserción de la canción ${titulo} CORRECTA.`,
 		});
 	} catch (error) {
 		return res.status(500).json({
