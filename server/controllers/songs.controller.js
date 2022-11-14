@@ -29,6 +29,22 @@ const getCanciones = async (req, res) => {
 	}
 };
 
+const getCancionesRecientes = async (req, res) => {
+	try {
+		const [result] = await pool.query(
+			"SELECT axc.isrc, a.nombreArtistico AS artista, a.fotoArtista, c.titulo AS tituloCancion,c.rutaCancion, c.fechaLanzamiento, c.duracion, g.nombreGenero, al.titulo AS tituloAlbum,al.fotoAlbum FROM artistaXCanciones AS axc INNER JOIN artistas AS a ON axc.idArtista = a.idArtista INNER JOIN canciones AS c ON axc.isrc = c.isrc INNER JOIN generos AS g ON g.idGenero = c.idGenero INNER JOIN albumes as al  ON al.idAlbum = c.idAlbum ORDER BY c.fechaInsercion DESC LIMIT 10;"
+		);
+
+		if (result.length === 0) return res.status(404).json({ msg: `No existen canciones en la BD.` });
+
+		return res.status(200).json(result);
+	} catch (error) {
+		return res.status(500).json({
+			msg: error.message,
+		});
+	}
+};
+
 const createCancion = async (req, res) => {
 	try {
 		const { isrc, titulo, fechaLanzamiento, rutaCancion, idGenero, idAlbum, duracion } = req.body;
@@ -99,4 +115,4 @@ const eliminarCancion = async (req, res) => {
 	}
 };
 
-export { getCancion, getCanciones, createCancion, updateCancion, eliminarCancion };
+export { getCancion, getCanciones, getCancionesRecientes, createCancion, updateCancion, eliminarCancion };

@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Songs from "../components/Songs";
 import FormSubirImg from "../components/FormSubirImg";
 
-import { getCancionesRequest } from "../api/searchs.api.js";
+import { getCancionesRecientesRequest } from "../api/searchs.api.js";
 
 const HomePage = () => {
 	const [canciones, setCanciones] = useState([]);
@@ -11,7 +11,7 @@ const HomePage = () => {
 
 	const cargarCanciones = async () => {
 		setLoading(true);
-		const res = await getCancionesRequest();
+		const res = await getCancionesRecientesRequest();
 		console.log(res.data);
 		setCanciones(res.data);
 		setLoading(false);

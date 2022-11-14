@@ -10,9 +10,9 @@ const Songs = ({ infoCancion }) => {
 				<img src={`${apiUrlupload}/img/Indeleble Album.jpg`} className="img" alt="img" />
 			</div>
 			<div className="infoImg">
-				<h2>{infoCancion.titulo}</h2>
+				<h2>{infoCancion.tituloCancion}</h2>
 				<h2>{infoCancion.artista}</h2>
-				<h3>NombrAlbum</h3>
+				<h3>{infoCancion.tituloAlbum}</h3>
 				<audio controls>
 					<source src={`${apiUrlupload}/music/${infoCancion.rutaCancion}`} />
 				</audio>

@@ -4,7 +4,7 @@ import axios from "axios";
 import { useState } from "react";
 
 const FormSubirImg = () => {
-	const beURL = "http://localhost:4000/api/uploads";
+	const beURL = "http://localhost:4000/api/uploads/img";
 
 	const [imagen, setImagen] = useState();
 

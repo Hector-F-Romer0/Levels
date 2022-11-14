@@ -2,6 +2,7 @@ import { Router } from "express";
 import {
 	getCancion,
 	getCanciones,
+	getCancionesRecientes,
 	createCancion,
 	updateCancion,
 	eliminarCancion,
@@ -12,6 +13,8 @@ const router = Router();
 router.get("/songs/:id", getCancion);
 
 router.get("/songs", getCanciones);
+
+router.get("/lastSongs/", getCancionesRecientes);
 
 router.post("/songs", createCancion);
 
