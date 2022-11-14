@@ -47,7 +47,7 @@ const createCanciones = async (req, res) => {
 		]);
 
 		return res.status(200).json({
-			msg: `Insersión del artista ${nombreArtistico} CORRECTO.`,
+			msg: `Insersión de la cancion ${nombreArtistico} CORRECTO.`,
 		});
 	} catch (error) {
 		return res.status(500).json({
