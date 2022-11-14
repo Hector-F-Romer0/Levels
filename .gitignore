@@ -30,4 +30,7 @@ yarn-error.log*
 /server/node_modules
 /server/db/uploads
 
+/client/env.json
+/client/envP.json
+
 

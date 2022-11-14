@@ -1,7 +1,28 @@
 import React from 'react'
+import { useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";
+import { getGenerosRequest } from "../api/genres.api.js"
 
 const InserCanciones = () => {
+
+    const [generos, setGeneros] = useState([])
+
+    const [loading, setLoading] = useState();
+
+    const cargarGeneros = async () => {
+        setLoading(true);
+        const res = await getGenerosRequest();
+        console.log(res.data);
+        setGeneros(res.data);
+        console.log(generos)
+        setLoading(false);
+    };
+
+    // Apenas cargue la página por primera vez, se llamará a un método que cargue las canciones
+    useEffect(() => {
+        cargarGeneros();
+    }, []);
+
 
     const {
         register,
@@ -12,6 +33,11 @@ const InserCanciones = () => {
     const onSubmit = (data) => {
         console.log(data);
     };
+
+    if (loading) {
+        return <h1>Cargando...</h1>;
+    }
+
     return (
         <div className='Register'>
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -43,14 +69,24 @@ const InserCanciones = () => {
                     required: true
                 })}></input>
                 {errors.duracion?.type === 'required' && <p className='Error'>El campo Duración es requerido</p>}
-                <h1 className='UserText'>Id del Genero</h1>
-                <select className='InputSong'>
-                    <option value="Reggue">1</option>
+                <h1 className='UserText'>Genero</h1>
+                <select className='InputSong'{...register('idGenero', {
+                    reuired: true
+                })}>
+                    {generos.map((item) => {
+                        return (
+                            <option value={item.idGenero}>{item.nombreGenero}</option>)
+                        // <h1 value={item.idGenero}>{item.nombreGenero}</h1>
+
+                    })}
+                    {/* <option value="Reggue">1</option>
                     <option value="Rock">2</option>
                     <option value="Pop">3</option>
                     <option value="Balada">4</option>
-                    <option value="Jmm">5</option>
-                </select><br></br>
+                    <option value="Jmm">5</option>  */}
+                </select>
+                {errors.idGenero?.type === 'required' && <p className='Error'>El campo Genero es requerido</p>}
+                <br></br>
                 <input type="Submit" className='BotonRegis' value="Insertar" />
             </form>
         </div>
