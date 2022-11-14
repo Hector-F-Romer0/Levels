@@ -10,7 +10,7 @@ SHOW TABLES;
 -- CREACIÓN TABLAS
 
 create table if not exists usuarios (
-numId int(10) not null primary key,
+numId varchar(10) not null primary key,
 nombres varchar(50) not null, 
 apellidos varchar(50) not null, 
 nombreUsuario varchar(25) not null, 
@@ -44,7 +44,7 @@ constraint PrimaryKeyGenero primary key(idGenero));
 
 create table if not exists albumes (
 idAlbum int not null PRIMARY KEY AUTO_INCREMENT, 
-titulo varchar(50) not null, 
+titulo varchar(80) not null, 
 fotoAlbum varchar(100) not null, 
 fechaLanzamiento date not null,
 idGenero int not null,
@@ -52,22 +52,21 @@ FOREIGN KEY(idGenero) REFERENCES generos(idGenero) ON DELETE CASCADE);
 
 create table if not exists artistaXCanciones (
 idArtista int not null references artistas(idArtista) on delete cascade,
-isrc int not null references canciones(isrc) on delete cascade,
+isrc varchar(50) not null references canciones(isrc) on delete cascade,
 constraint PrimaryKeyAxC primary key (idArtista, isrc));
 
-create table if not exists cancionesXUsuario (
-numId int not null references usuarios(numId) on delete cascade,
-isrc int not null references canciones(isrc) on delete cascade,
+create table if not exists cancionesXUsuarios (
+numId varchar(10) not null references usuarios(numId) on delete cascade,
+isrc varchar(12) not null references canciones(isrc) on delete cascade,
 constraint PrimaryKeyAxC primary key (numId, isrc));
 
-DROP TABLE usuarios;
-DROP TABLE canciones;
-DROP TABLE artistas;
-DROP TABLE generos;
-DROP TABLE albumes;
-DROP TABLE artistaXCanciones;
-DROP TABLE cancionesXUsuario;
-DROP TABLE albumes;
+-- DROP TABLE usuarios;
+-- DROP TABLE canciones;
+-- DROP TABLE artistas;
+-- DROP TABLE albumes;
+-- DROP TABLE generos;
+-- DROP TABLE artistaXCanciones;
+-- DROP TABLE cancionesXUsuario;
 
 -- ------------------------------------------------------------------------------------------------
 
@@ -79,22 +78,25 @@ INSERT INTO usuarios VALUES
 ("0987654321", "Pedro", "Manos Cuchillas", "Cuchillitas", "cuchilloPro@gmail.com", "1987", "Admin");
 
 -- nombres, apellidos, nombreArtistico, fechaNacimiento, lugarNacimiento, fotoArtista
-INSERT INTO artistas VALUES
-("Benito Antonio", "Martínez Ocasio", "Bad Bunny", "1994-03-10", "Almirante Sur, Puerto Rico", ""),
-("Grupo Niche", "", "Grupo Niche", "1979-01-01", "Cali, Colombia", ""),
-("Los Mesoneros", "", "Los Mesoneros", "2006-01-01", "Caracas, Venezuela", ""),
-("Love Of Lesbian", "", "Love Of Lesbian", "1997-01-01", "Cataluña, España", ""),
-("Monsieur Periné", "", "Monsieur Periné", "2007-01-01", "Bogotá, Colombia", "");
+INSERT INTO artistas (nombres, apellidos, nombreArtistico, fechaNacimiento, lugarNacimiento, fotoArtista)
+VALUES 
+("Benito Antonio", "Martínez Ocasio", "Bad Bunny", "1994-03-10", "Almirante Sur, Puerto Rico", "Bad Bunny.jpg"),
+("Grupo Niche", "", "Grupo Niche", "1979-01-01", "Cali, Colombia", "Grupo Niche.jpg"),
+("Los Mesoneros", "", "Los Mesoneros", "2006-01-01", "Caracas, Venezuela", "Los Mesoneros.jpg"),
+("Love Of Lesbian", "", "Love Of Lesbian", "1997-01-01", "Cataluña, España", "Love Of Lesbian.jpg"),
+("Monsieur Periné", "", "Monsieur Periné", "2007-01-01", "Bogotá, Colombia", "Monsieur Periné.jpg");
 
 -- nombreGenero
-INSERT INTO generos VALUES
+INSERT INTO generos (nombreGenero)
+VALUES
 ("Reguetón"),
 ("Tropical"),
 ("Salsa"),
 ("Rock");
 
 -- titulo, fotoAlbum, fechaLanzamiento, idGenero,
-INSERT INTO albumes VALUES
+INSERT INTO albumes (titulo, fotoAlbum, fechaLanzamiento, idGenero)
+VALUES
 ("El Último Tour Del Mundo", "El Último Tour Del Mundo.jpg", "2020-11-27", "1"),
 ("Un Verano Sin Tí", "Un Verano Sin Tí.jpg", "2022-05-06", "1"),
 ("YHLQMDLG", "YHLQMDLG.jpg", "2020-02-29", "1"),
@@ -268,7 +270,7 @@ INSERT INTO canciones VALUES
 ("ES5400580401", "Carta a Todas Tus Catástrofes", "2005-03-30", "Carta a Todas Tus Catástrofes.wav", "4", "12"),
 ("ES5400580403", "Domingo Astromántico", "2005-03-30", "Domingo Astromántico.wav", "4", "12"),
 ("ES5400580405", "Houston, Tenemos un Poema", "2005-03-30", "Houston, Tenemos un Poema.wav", "4", "12"),
-("ES5400580405", "Limusinas", "2005-03-30", "Limusinas.wav", "4", "12"),
+("ES5400580411", "Limusinas", "2005-03-30", "Limusinas.wav", "4", "12"),
 ("ES5400580409", "Los Niños del Mañana", "2005-03-30", "Los Niños del Mañana.wav", "4", "12"),
 ("ES5400580402", "Maniobras de Escapismo", "2005-03-30", "Maniobras de Escapismo.wav", "4", "12"),
 ("ES5400580408", "Marlene, la Vecina del Ártico", "2005-03-30", "Marlene, la Vecina del Ártico.wav", "4", "12"),
@@ -433,7 +435,7 @@ INSERT INTO artistaXCanciones VALUES
 ("4", "ES5400580401"),
 ("4", "ES5400580403"),
 ("4", "ES5400580405"),
-("4", "ES5400580405"),
+("4", "ES5400580411"),
 ("4", "ES5400580409"),
 ("4", "ES5400580402"),
 ("4", "ES5400580408"),
