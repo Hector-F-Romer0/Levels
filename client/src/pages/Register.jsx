@@ -14,32 +14,32 @@ const Register = () => {
                 <p className='textRegis'>
                     Nombre
                 </p>
-                <input typeof='text' className='Regis' placeholder=' ej:Luis Miguel' id='Nombres' {...register('Nombres')}></input>
-
+                <input type='text' className='Regis' placeholder=' ej:Luis Miguel' id='Nombres' {...register('Nombres')} />
+                {errors.Nombres.type}
                 <p className='textRegis'>
                     Apellidos
                 </p>
-                <input typeof='text' className='Regis' placeholder=' ej:Rodriguez Muñoz' id='Apellidos' {...register('Apellidos')}></input>
+                <input type='text' className='Regis' placeholder=' ej:Rodriguez Muñoz' id='Apellidos' {...register('Apellidos')}></input>
                 <p className='textRegis'>
                     Documento de identidad
                 </p>
-                <input typeof='text' className='Regis' placeholder=' ej:1005785804' id='Id'></input>
-                <p className='textRegis' {...register('Id')}>
+                <input type='text' className='Regis' placeholder=' ej:1005785804' id='Id' {...register('Id')}></input>
+                <p className='textRegis'>
                     Nombre de usuario
                 </p>
-                <input typeof='text' className='Regis' placeholder=' ej:xXPepito123proXx' id='Usuario'></input>
+                <input type='text' className='Regis' placeholder=' ej:xXPepito123proXx' id='Usuario'></input>
                 <p className='textRegis' {...register('Usuario')}>
                     Correo
                 </p>
-                <input typeof='text' className='Regis' placeholder=' ej:TerminatorHansolo@gmail.com' id='Email' {...register('Email')}></input>
+                <input type='text' className='Regis' placeholder=' ej:TerminatorHansolo@gmail.com' id='Email' {...register('Email')}></input>
                 <p className='textRegis'>
                     Contraseña
                 </p>
-                <input typeof='text' className='Regis' placeholder=' ej:Contraseña123' id='Contrasena'></input>
+                <input type='text' className='Regis' placeholder=' ej:Contraseña123' id='Contrasena'></input>
                 <p className='textRegis' {...register('Contrasena')}>
                     Repetir contraseña
                 </p>
-                <input typeof='text' className='Regis' placeholder=' Repite la contraseña' id='ConfirmarContrasena' {...register('ContrasenaX2')}></input><br></br>
+                <input type='text' className='Regis' placeholder=' Repite la contraseña' id='ConfirmarContrasena' {...register('ContrasenaX2')}></input><br></br>
                 <input type="Submit" className='BotonRegis' value="Registrarse" />
             </form>
         </div>
