@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Songs from "../components/Songs";
 import FormSubirImg from "../components/FormSubirImg";
 
-import { getCancionesRequest } from "../api/searchs.js";
+import { getCancionesRequest } from "../api/searchs.api.js";
 
 const HomePage = () => {
 	const [canciones, setCanciones] = useState([]);

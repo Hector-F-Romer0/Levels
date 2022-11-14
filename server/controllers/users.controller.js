@@ -29,26 +29,27 @@ const getUsuarios = async (req, res) => {
 };
 
 const createUsuarios = async (req, res) => {
-	try {
-		const { numId, nombres, apellidos, nombreUsuario, correo, contrasena, tipo } = req.body;
-		const [result] = await pool.query("INSERT INTO usuarios VALUES (?,?,?,?,?,?,?)", [
-			numId,
-			nombres,
-			apellidos,
-			nombreUsuario,
-			correo,
-			contrasena,
-			tipo,
-		]);
+	const { numId, nombres, apellidos, nombreUsuario, correo, contrasena, tipoUsuario } = req.body;
 
-		return res.status(200).json({
-			msg: `Insersión del usuario ${nombres} ${apellidos} con id ${numId} CORRECTO.`,
-		});
-	} catch (error) {
-		return res.status(500).json({
-			msg: error.message,
-		});
-	}
+	// // Verificación de existencia en la BD
+	// const [existeUsuario] = await pool.query(`SELECT * FROM usuarios WHERE numId = ?`, [numId]);
+	// // Si la canción existe en la base de datos, devuelve un mensaje y no crea el registro.
+	// if (existeUsuario.length > 0)
+	// 	return res.status(400).json({ msg: `El usuario con id ${numId} ya existe en la BD.` });
+
+	const [result] = await pool.query("INSERT INTO usuarios VALUES (?,?,?,?,?,?,?)", [
+		numId,
+		nombres,
+		apellidos,
+		nombreUsuario,
+		correo,
+		contrasena,
+		tipoUsuario,
+	]);
+
+	return res.status(200).json({
+		msg: `Insersión del usuario ${nombres} ${apellidos} con id ${numId} CORRECTO.`,
+	});
 };
 
 const updateUsuarios = async (req, res) => {

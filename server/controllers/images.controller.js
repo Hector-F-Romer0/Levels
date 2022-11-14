@@ -8,7 +8,7 @@ const __dirname = path.dirname(__filename);
 
 // Configuraciones de cómo se guardarán los archivos
 const storage = multer.diskStorage({
-	destination: path.resolve(__dirname, "../uploads/"),
+	destination: path.resolve(__dirname, "../uploads/music/"),
 	filename: (req, file, cb) => {
 		cb(null, `${file.originalname}`);
 	},

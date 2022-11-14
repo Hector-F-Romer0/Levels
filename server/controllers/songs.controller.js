@@ -31,7 +31,7 @@ const getCanciones = async (req, res) => {
 
 const createCancion = async (req, res) => {
 	try {
-		const { isrc, titulo, fechaLanzamiento, rutaCancion, idGenero, idAlbum } = req.body;
+		const { isrc, titulo, fechaLanzamiento, rutaCancion, idGenero, idAlbum, duracion } = req.body;
 		console.log(req.body);
 		// Se verifica en la BD si YA existe la canción en la BD.
 		const [existeCancion] = await pool.query(`SELECT * FROM canciones WHERE isrc = ?`, [isrc]);
@@ -39,13 +39,14 @@ const createCancion = async (req, res) => {
 		// Si la canción existe en la base de datos, devuelve un mensaje y no crea el registro.
 		if (existeCancion.length > 0) return res.status(400).json({ msg: "La canción ya está creada en la BD." });
 
-		const [result] = await pool.query("INSERT INTO canciones VALUES (?,?,?,?,?,?)", [
+		const [result] = await pool.query("INSERT INTO canciones VALUES (?,?,?,?,?,?,?,default)", [
 			isrc,
 			titulo,
 			fechaLanzamiento,
 			rutaCancion,
 			idGenero,
 			idAlbum,
+			duracion,
 		]);
 
 		return res.status(200).json({
@@ -64,8 +65,8 @@ const updateCancion = async (req, res) => {
 		console.log(req.body);
 		console.log(req.params.id);
 		const [result] = await pool.query(
-			"UPDATE canciones SET titulo = IFNULL(?,titulo), fechaLanzamiento = IFNULL(?,fechaLanzamiento), rutaCancion = IFNULL(?,rutaCancion), idGenero = IFNULL(?,idGenero), idAlbum = IFNULL(?,idAlbum) WHERE isrc = ?",
-			[titulo, fechaLanzamiento, rutaCancion, idGenero, idAlbum, req.params.id]
+			"UPDATE canciones SET titulo = IFNULL(?,titulo), fechaLanzamiento = IFNULL(?,fechaLanzamiento), rutaCancion = IFNULL(?,rutaCancion), idGenero = IFNULL(?,idGenero), idAlbum = IFNULL(?,idAlbum),duracion = IFNULL(?,duracion) WHERE isrc = ?",
+			[titulo, fechaLanzamiento, rutaCancion, idGenero, idAlbum, duracion, req.params.id]
 		);
 		if (result.affectedRows === 0)
 			return res.status(404).json({
