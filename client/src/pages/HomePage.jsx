@@ -6,7 +6,6 @@ import Songs from "../components/Songs";
 const HomePage = () => {
 	return (
 		<div className="">
-			{/* <FormSubirImg /> */}
 			<dir className="container">
 				<Songs />
 				<Songs />
