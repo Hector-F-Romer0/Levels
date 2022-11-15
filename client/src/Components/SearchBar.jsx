@@ -33,10 +33,10 @@ const SearchBar = () => {
 			<div className="search">
 				<div className="searchInputs">
 					<input
-						className="inputSearchBar"
+						className="inputSearchK"
 						placeholder="Ingrese su búsqueda"
 						type="text"
-						onChange={handleFilter}
+						onChange={handleFilter} 
 					/>
 					{/* <div className="searchIcon"></div> */}
 				</div>

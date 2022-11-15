@@ -38,8 +38,8 @@ const GenreList = () => {
 	};
 
 	return (
-		<div>
-			<select className="InputSong" onChange={handleChange}>
+		<div className="Register">
+			<select className="InputSelect" onChange={handleChange}>
 				{generos.map((item) => {
 					return <option key={item.idGenero}>{item.nombreGenero}</option>;
 				})}

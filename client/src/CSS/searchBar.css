@@ -63,3 +63,22 @@ a {
 a:hover {
 	background-color: lightgrey;
 }
+
+.searchInputs{
+	text-align: center;
+	align-items: center;
+	margin: auto;
+}
+
+.inputSearchK{
+	outline: none;
+    box-sizing: border-box;
+    height: 40px;
+    width: 200%;
+    border-radius: 15px;
+    font-size: 20px;
+    border: 1px solid #1db954;
+    transition: all 0.7s ease;
+    background: #191414;
+    color: wheat;
+}

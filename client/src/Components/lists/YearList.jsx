@@ -31,8 +31,8 @@ const YearList = () => {
 	};
 
 	return (
-		<div>
-			<select className="InputSong" onChange={handleChange}>
+		<div className="Register">
+			<select className="InputSelect" onChange={handleChange}>
 				{years.map((item) => {
 					return <option key={item.year}>{item.year}</option>;
 				})}

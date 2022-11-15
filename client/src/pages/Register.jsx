@@ -73,7 +73,7 @@ const Register = () => {
 					placeholder=" ej:1005785804"
 					id="id"
 					{...register("numId", { required: true })}></input>
-				{errors.id?.type === "required" && (
+				{errors.numId?.type === "required" && (
 					<p className="Error">El campo Documento de identidad es requerido</p>
 				)}
 				<br></br>
@@ -85,7 +85,7 @@ const Register = () => {
 					placeholder=" ej:xXPepito123proXx"
 					id="nombreUsuario"
 					{...register("nombreUsuario", { required: true })}></input>
-				{errors.usuario?.type === "required" && (
+				{errors.nombreUsuario?.type === "required" && (
 					<p className="Error">El campo Nombre de Usuario es requerido</p>
 				)}
 				<br></br>
@@ -97,7 +97,7 @@ const Register = () => {
 					placeholder=" ej:TerminatorHansolo@gmail.com"
 					id="email"
 					{...register("correo", { required: true })}></input>
-				{errors.email?.type === "required" && <p className="Error">El campo Correo es requerido</p>}
+				{errors.correo?.type === "required" && <p className="Error">El campo Correo es requerido</p>}
 				<br></br>
 				<label className="textRegis">Contraseña</label>
 				<br></br>

@@ -17,13 +17,13 @@ const AlbumList = () => {
 	};
 
 	return (
-		<>
-			<select className="InputSong">
+		<div className="Register">
+			<select className="InputSelect">
 				{albumes.map((item) => {
 					return <option key={item.idAlbum}>{item.titulo}</option>;
 				})}
 			</select>
-		</>
+		</div>
 	);
 };
 
