@@ -25,10 +25,10 @@ const App = () => {
 					<Route path="*" element={<NotFoundPage />} />
 					<Route path="/register" element={<Register />} />
 					<Route path="/login" element={<Login />} />
-					<Route path="/InserSongs" element={<InserCanciones />} />
-					<Route path="/InserArtist" element={<InserArtist />} />
-					<Route path="/InserAlbum" element={<InserAlbum />} />
-					<Route path="/songs/:isrc" element={<Login />} />				
+					<Route path="/inserSongs" element={<InserCanciones />} />
+					<Route path="/inserArtist" element={<InserArtist />} />
+					<Route path="/inserAlbum" element={<InserAlbum />} />
+					<Route path="/songs/:isrc" element={<Login />} />
 				</Routes>
 				<Footer/>
 			</BrowserRouter>

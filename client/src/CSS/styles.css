@@ -93,6 +93,9 @@ input {
 	color: wheat;
 }
 
+::placeholder {
+	color: grey;
+}
 
 input:hover {
 	transition: all 0.7s ease;
@@ -480,10 +483,19 @@ a {
 }
 
 .textofiltro{
-	font-size: 30px;
+	font-size: 20px;
   	padding: 15px;
   	font-family: "Poppins", sans-serif;
-	margin: 50px;
+	margin: 10px;
+	text-align: center;
+}
+
+.textofiltro2{
+	font-size: 25px;
+  	padding: 15px;
+  	font-family: "Poppins", sans-serif;
+	margin: 10px;
+	text-align: center;
 }
 
 .Registerfiltro {
@@ -491,7 +503,6 @@ a {
 	text-align: center;
 	margin: 5px auto;
 	width: 80%;
-	margin-top: 15px;
 	padding: 15px;
 	gap: 10px;
 }
@@ -505,3 +516,4 @@ a {
 	padding: 15px;
 	gap: 10px;
 }
+

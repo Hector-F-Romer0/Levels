@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
-
+import GenreList from "./lists/GenreList"
 import { CancionesContext } from "../context/CancionesContext";
 
 import "../css/styles.css";
@@ -9,16 +9,26 @@ import "../css/searchBar.css";
 import ListContainer from "./lists/ListContainer";
 
 const SearchBar = () => {
-	const { canciones } = useContext(CancionesContext);
-
+	const { canciones, setFiltroBusqueda, filtroBusqueda } = useContext(CancionesContext);
 	const [filteredData, setFilteredData] = useState([]);
 
 	const handleFilter = (event) => {
 		const palabraBuscada = event.target.value;
-		const filtro = canciones.filter((value) => {
-			return value.tituloCancion.toLowerCase().includes(palabraBuscada.toLowerCase());
-		});
-		// console.log(filteredData);
+		let filtro = "";
+
+		if (filtroBusqueda.buscarPor === "artistas") {
+			filtro = canciones.filter((value) => {
+				return value.nombreArtistico.toLowerCase().includes(palabraBuscada.toLowerCase());
+			});
+		} else if (filtroBusqueda.buscarPor === "canciones") {
+			filtro = canciones.filter((value) => {
+				return value.tituloCancion.toLowerCase().includes(palabraBuscada.toLowerCase());
+			});
+		} else if (filtroBusqueda.buscarPor === "albumes") {
+			filtro = canciones.filter((value) => {
+				return value.titulo.toLowerCase().includes(palabraBuscada.toLowerCase());
+			});
+		}
 		if (palabraBuscada === "") {
 			setFilteredData([]);
 		} else {
@@ -26,8 +36,47 @@ const SearchBar = () => {
 		}
 	};
 
+	const last = (value, index) => {
+		if (filtroBusqueda.buscarPor === "artistas") {
+			return (
+				<Link className="dataItem" to={"/songs/id"} key={index}>
+					{value.nombreArtistico}
+				</Link>
+			);
+		} else if (filtroBusqueda.buscarPor === "canciones") {
+			return (
+				<Link className="dataItem" to={"/songs/id"} key={index}>
+					{value.tituloCancion}
+				</Link>
+			);
+		} else if (filtroBusqueda.buscarPor === "albumes") {
+			return (
+				<Link className="dataItem" to="/songs/id" key={index}>
+					{value.titulo}
+				</Link>
+			);
+		}
+	};
+
+	const handleSearchParam = (filtro) => {
+		setFiltroBusqueda({ buscarPor: filtro });
+	};
+
 	return (
-		<>
+		<div className="Registerfiltro">
+			{<h1 className="textofiltro2">Estas filtrando por: {filtroBusqueda.buscarPor}</h1>}
+			<h1 className="textofiltro2">Buscar por</h1><br></br>
+			<div className="searchInputs">
+				<button type="button" className="InputSelect" onClick={() => handleSearchParam("canciones")}>
+					Canciones
+				</button>
+				<button type="button" className="InputSelect" onClick={() => handleSearchParam("artistas")}>
+					Artistas x genero
+				</button>
+				<button type="button" className="InputSelect" onClick={() => handleSearchParam("albumes")}>
+					Albumes
+				</button>
+			</div>
 			<div className="Register2">
 				<div className="searchInputs">
 					<input
@@ -36,23 +85,20 @@ const SearchBar = () => {
 						type="text"
 						onChange={handleFilter} 
 					/>
-					{/* <div className="searchIcon"></div> */}
 				</div>
 				{/* Si el filtro de información contiene información, se mostrarán los resultados gracias al operador && */}
-				<div className="inputSearch">
-					{filteredData.length !== 0 && (
-						<div className="dataResult">
-							{filteredData.slice(0, 10).map((value) => (
-								<Link className="dataItem" to={"/songs/id"} key={value.isrc}>
-									{value.tituloCancion}
-								</Link>
-							))}
-						</div>
+				{filteredData.length !== 0 && (
+					<div className="dataResult">
+						{filteredData.slice(0, 10).map((value, index) => last(value, index))}
+					</div>
 				)}
 				</div>
-			</div>
-			<ListContainer />
-		</>
+				{filtroBusqueda.buscarPor === "canciones" ? (
+                <ListContainer />
+            ) : (
+                filtroBusqueda.buscarPor === "artistas" && <GenreList />
+            )}
+		</div>
 	);
 };
 export default SearchBar;

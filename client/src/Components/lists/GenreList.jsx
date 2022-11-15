@@ -37,10 +37,9 @@ const GenreList = () => {
 
 	return (
 		<div className="Registerfiltro">
-			<label className="textofiltro">
+			<h1 className="textofiltro">
 				Filtrado de canciones por género. 
-				</label> <br></br>
-				<br></br>
+				</h1> 
 				<select className="InputSelect" onChange={handleChange}>
 					{generos.map((item) => {
 						return <option key={item.idGenero}>{item.nombreGenero}</option>;
