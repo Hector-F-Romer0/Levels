@@ -6,6 +6,7 @@ import UserPage from "./pages/UserPage";
 import NotFoundPage from "./pages/NotFoundPage.jsx";
 import Navbar from "./components/Navbar";
 import Register from "./pages/Register.jsx";
+import Footer from "./components/Footer";
 import Login from "./pages/Login";
 import InserCanciones from "./pages/InserCanciones";
 import InserArtist from "./pages/InserArtist";
@@ -15,6 +16,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Navbar />
+      {/* <Songs/> */}
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/user/" element={<UserPage />} />
@@ -26,6 +28,7 @@ const App = () => {
         <Route path="/InserArtist" element={<InserArtist />} />
         <Route path="/InserAlbum" element={<InserAlbum />} />
       </Routes>
+      <Footer/>
     </BrowserRouter>
   );
 };

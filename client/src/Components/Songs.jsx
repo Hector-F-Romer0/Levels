@@ -12,10 +12,13 @@ const Songs = ({ infoCancion }) => {
 			<div className="infoImg">
 				<h2>{infoCancion.titulo}</h2>
 				<h2>{infoCancion.artista}</h2>
-				<h3>NombrAlbum</h3>
-				<audio controls>
+				<h3>Artista</h3>
+				<h3>NombreAlbum</h3>
+				<audio controls className="audiplay">
 					<source src={`${apiUrlupload}/music/${infoCancion.rutaCancion}`} />
+					<script src="https://cdn.jsdelivr.net/gh/sh20raj/AudiPlay/audiplay.min.js"></script>
 				</audio>
+				
 			</div>
 		</div>
 	);
