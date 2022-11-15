@@ -6,8 +6,8 @@ import {
 	createCancion,
 	updateCancion,
 	eliminarCancion,
-	obtenerCancionesFiltroAño,
-	obtenerCancionesFiltroAlbum,
+	getYear,
+	obtenerCancionesFiltroYear,
 } from "../controllers/songs.controller.js";
 
 const router = Router();
@@ -17,6 +17,9 @@ router.get("/songs/:id", getCancion);
 router.get("/songs", getCanciones);
 
 router.get("/home/songs", getCancionesHome);
+
+router.get("/home/songs/years", getYear);
+router.get("/home/songs/years/query/:filtro", obtenerCancionesFiltroYear);
 
 // router.get("/songsYearFilter/:filtro", obtenerCancionesFiltroAño);
 

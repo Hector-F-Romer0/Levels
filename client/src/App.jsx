@@ -5,9 +5,12 @@ import { CancionesProvider } from "./context/CancionesContext";
 import HomePage from "./pages/HomePage";
 import UserPage from "./pages/UserPage";
 import NotFoundPage from "./pages/NotFoundPage.jsx";
-import NavBar from "./components/Navbar.jsx";
+import NavBar from "./components/NavBar";
 import Register from "./pages/Register.jsx";
 import Login from "./pages/Login";
+import InserCanciones from "./pages/InserCanciones";
+import InserArtist from "./pages/InserArtist";
+import InserAlbum from "./pages/InserAlbum";
 
 const App = () => {
 	return (
@@ -21,6 +24,9 @@ const App = () => {
 					<Route path="*" element={<NotFoundPage />} />
 					<Route path="/register" element={<Register />} />
 					<Route path="/login" element={<Login />} />
+					<Route path="/InserSongs" element={<InserCanciones />} />
+					<Route path="/InserArtist" element={<InserArtist />} />
+					<Route path="/InserAlbum" element={<InserAlbum />} />
 					<Route path="/songs/:isrc" element={<Login />} />
 				</Routes>
 			</BrowserRouter>

@@ -29,6 +29,20 @@ const getCanciones = async (req, res) => {
 	}
 };
 
+const getYear = async (req, res) => {
+	try {
+		const [result] = await pool.query("SELECT DISTINCT YEAR(fechaLanzamiento) AS year FROM canciones;");
+
+		if (result.length === 0) return res.status(404).json({ msg: `No existen canciones en la BD.` });
+
+		return res.status(200).json(result);
+	} catch (error) {
+		return res.status(500).json({
+			msg: error.message,
+		});
+	}
+};
+
 const getCancionesHome = async (req, res) => {
 	try {
 		const [result] = await pool.query(
@@ -115,7 +129,7 @@ const eliminarCancion = async (req, res) => {
 	}
 };
 
-const obtenerCancionesFiltroAño = async (req, res) => {
+const obtenerCancionesFiltroYear = async (req, res) => {
 	try {
 		const [result] = await pool.query(
 			"SELECT axc.isrc, a.nombreArtistico AS artista, a.fotoArtista, c.titulo AS tituloCancion, c.fechaLanzamiento, c.duracion, g.nombreGenero, al.titulo AS tituloAlbum,al.fotoAlbum FROM artistaXCanciones AS axc INNER JOIN artistas AS a ON axc.idArtista = a.idArtista INNER JOIN canciones AS c ON axc.isrc = c.isrc INNER JOIN generos AS g ON g.idGenero = c.idGenero INNER JOIN albumes as al  ON al.idAlbum = c.idAlbum WHERE YEAR(c.fechaLanzamiento) = ?;",
@@ -162,6 +176,6 @@ export {
 	createCancion,
 	updateCancion,
 	eliminarCancion,
-	obtenerCancionesFiltroAño,
-	obtenerCancionesFiltroAlbum,
+	obtenerCancionesFiltroYear,
+	getYear,
 };

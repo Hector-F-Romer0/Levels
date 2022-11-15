@@ -3,6 +3,10 @@ import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 
 import { CancionesContext } from "../context/CancionesContext";
+import YearList from "./lists/YearList";
+import AlbumList from "./lists/AlbumList";
+import GenreList from "./lists/GenreList";
+
 import "../css/styles.css";
 import "../css/searchBar.css";
 
@@ -10,12 +14,6 @@ const SearchBar = () => {
 	const { canciones } = useContext(CancionesContext);
 
 	const [filteredData, setFilteredData] = useState([]);
-	const [filtro, setFiltro] = useState("");
-
-	const handleRadioClick = (e) => {
-		console.log(e.target.value);
-		setFiltro(e.target.value);
-	};
 
 	const handleFilter = (event) => {
 		const palabraBuscada = event.target.value;
@@ -29,8 +27,6 @@ const SearchBar = () => {
 			setFilteredData(filtro);
 		}
 	};
-
-	const opcionRadioEscogida = () => {};
 
 	return (
 		<>
@@ -55,6 +51,9 @@ const SearchBar = () => {
 					</div>
 				)}
 			</div>
+			<YearList />
+			<GenreList />
+			<AlbumList />
 		</>
 	);
 };

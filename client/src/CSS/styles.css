@@ -214,6 +214,7 @@ input:hover {
 	width: 52%;
 }
 .BotonRegis {
+	text-align: center;
 	margin-top: 15px;
 	background-color: #1ed65e;
 	color: white;
@@ -362,4 +363,62 @@ a:hover {
 
 #clearBtn {
 	cursor: pointer;
+}
+.User {
+	text-align: center;
+	align-items: center;
+	margin: auto;
+	width: 60%;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	padding: 15px;
+	background-color: #2a2b2f;
+	border-radius: 15px;
+	border: 2px solid #999797;
+}
+.UserText{
+	font-size: 30px;
+  	padding: 15px;
+  	font-family: "Poppins", sans-serif;
+}
+.UserText2{
+	font-size: 20px;
+	padding: 10px;
+	color: #1ED65E;
+}
+.caja{
+	display:table-cell;
+	text-align: center;
+	width: 33%;
+}
+.caja2{
+	display:table-cell;
+	text-align: center;
+	width: 37%;
+}
+.InputSong{
+	width: 70%;
+}
+.InputSong:hover{
+	width: 72%;
+}
+.Cerrar{
+	margin-top: 15px;
+	background-color: #1ED65E;
+	color:white;
+	font-family: "Poppins", sans-serif;
+	padding: 15px;
+	width: 40%;
+	height: 65px;
+	font-size: 25px;
+	border-radius: 15px;
+	transition: all .7s ease;
+}
+.Cerrar:hover{
+	width: 42%;
+	color:#1db954;
+	background-color: wheat;
+	border-color: #1db954;
+	transition: all .7s ease;
+	font-size: 27px;
 }

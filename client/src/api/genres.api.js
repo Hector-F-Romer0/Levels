@@ -6,5 +6,5 @@ const client = axios.create({
 	baseURL: beURI,
 });
 
-const getYearRequest = async () => await client.get(`/home/songs/years`);
-export { getYearRequest };
+const getGenerosRequest = async () => await client.get(`/genres`);
+export { getGenerosRequest };

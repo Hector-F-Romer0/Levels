@@ -89,4 +89,27 @@ const eliminarUsuario = async (req, res) => {
 	}
 };
 
-export { getUsuario, getUsuarios, createUsuarios, updateUsuarios, eliminarUsuario };
+const loginUsuario = async (req, res) => {
+	try {
+		const { nombreUsuario, contrasena } = req.body;
+		const [result] = await pool.query("SELECT * FROM usuarios WHERE nombreUsuario = ? AND contrasena = ?", [
+			nombreUsuario,
+			contrasena,
+		]);
+
+		if (result.length > 0) {
+			console.log("EXISTE");
+			return res.status(200).json({ msg: `SI EXISTE USUARIO` });
+		} else {
+			console.log("NO EXISTE");
+			return res.status(402).json({ msg: `NO EXISTE USUARIO` });
+		}
+
+		console.log("RESULT");
+		console.log(result);
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+export { getUsuario, getUsuarios, createUsuarios, updateUsuarios, eliminarUsuario, loginUsuario };

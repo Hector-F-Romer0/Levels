@@ -14,6 +14,20 @@ const getGenero = async (req, res) => {
 	}
 };
 
+const getIdGenero = async (req, res) => {
+	try {
+		const [result] = await pool.query(`SELECT idGenero FROM generos WHERE nombreGenero = ?;`[req.body.genero]);
+
+		if (result.length === 0) return res.status(404).json({ msg: `El género con id ${req.params.id} NO EXISTE.` });
+
+		return res.status(200).json(result[0]);
+	} catch (error) {
+		return res.status(500).json({
+			msg: error.message,
+		});
+	}
+};
+
 const getGeneros = async (req, res) => {
 	try {
 		const [result] = await pool.query("SELECT * FROM generos");
@@ -81,4 +95,4 @@ const eliminarGenero = async (req, res) => {
 	}
 };
 
-export { getGenero, getGeneros, createGenero, updateGenero, eliminarGenero };
+export { getGenero, getGeneros, createGenero, updateGenero, eliminarGenero, getIdGenero };
