@@ -1,10 +1,8 @@
---  NUEVA VERSIÓN
 -- CREACIÓN BASE DE DATOS
---
 
-drop database if exists levels ;
-create database if not exists levels2 ;
-use levels2;
+drop database if exists levels;
+create database if not exists levels;
+use levels;
 SHOW TABLES;
 
 -- ------------------------------------------------------------------------------------------------
@@ -51,9 +49,7 @@ idAlbum int not null PRIMARY KEY AUTO_INCREMENT,
 titulo varchar(80) not null, 
 fotoAlbum varchar(100) not null, 
 fechaLanzamiento date not null,
-idGenero int not null,
-discografia VARCHAR(50) NOT NULL,
-FOREIGN KEY(idGenero) REFERENCES generos(idGenero) ON DELETE CASCADE);
+discografia VARCHAR(50) NOT NULL);
 
 create table if not exists artistaXCanciones (
 idArtista int not null references artistas(idArtista) on delete cascade,
@@ -100,23 +96,23 @@ VALUES
 ("Rock");
 
 -- titulo, fotoAlbum, fechaLanzamiento, idGenero, discografia 
-INSERT INTO albumes (titulo, fotoAlbum, fechaLanzamiento, idGenero, discografia)
+INSERT INTO albumes (titulo, fotoAlbum, fechaLanzamiento, discografia)
 VALUES
-("El Último Tour Del Mundo", "1.jpg", "2020-11-27", "1", "Rimas Entertainment"),
-("Un Verano Sin Tí", "2.jpg", "2022-05-06", "1", "Rimas Entertainment"),
-("YHLQMDLG", "3.jpg", "2020-02-29", "1", "Rimas Entertainment"),
-("Cielo De Tambores", "4.jpg", "1990-12-20", "3", "Discos CBS International"),
-("Huellas Del Pasado", "5.jpg", "1995-03-31", "3", "Sony Discos"),
-("No Hay Quinto Malo", "6.jpg", "1984-10-05", "3", "Discos Hispanos"),
-("Caiga La Noche", "7.jpg", "2017-03-29", "4", "LOS MESONEROS"),
-("Indeleble", "8.jpg", "2011-05-22", "4", "LOS MESONEROS"),
-("Pangea", "9.jpg", "2019-06-06", "4", "LOS MESONEROS"),
-("1999 (o como generar incendios de nieve con una lupa enfocando la luna)", "10.jpg", "2009-03-24", "4", "Warner Music Spain"),
-("El Poeta Halley", "11.jpg", "2016-03-04", "4", "Warner Music Spain"),
-("Maniobras De Escapismo", "12.jpg", "2005-03-30", "4", "Mushroom Pillow"),
-("Caja De Música", "13.jpg", "2015-05-16", "2", "Columbia Records"),
-("Encanto Tropical", "14.jpg", "2018-05-18", "2", "Sony Music"),
-("Hecho A Mano", "15.jpg", "2012-05-20", "2", "Independiente");
+("El Último Tour Del Mundo", "1.jpg", "2020-11-27", "Rimas Entertainment"),
+("Un Verano Sin Tí", "2.jpg", "2022-05-06", "Rimas Entertainment"),
+("YHLQMDLG", "3.jpg", "2020-02-29", "Rimas Entertainment"),
+("Cielo De Tambores", "4.jpg", "1990-12-20", "Discos CBS International"),
+("Huellas Del Pasado", "5.jpg", "1995-03-31", "Sony Discos"),
+("No Hay Quinto Malo", "6.jpg", "1984-10-05", "Discos Hispanos"),
+("Caiga La Noche", "7.jpg", "2017-03-29", "LOS MESONEROS"),
+("Indeleble", "8.jpg", "2011-05-22", "LOS MESONEROS"),
+("Pangea", "9.jpg", "2019-06-06", "LOS MESONEROS"),
+("1999 (o como generar incendios de nieve con una lupa enfocando la luna)", "10.jpg", "2009-03-24", "Warner Music Spain"),
+("El Poeta Halley", "11.jpg", "2016-03-04", "Warner Music Spain"),
+("Maniobras De Escapismo", "12.jpg", "2005-03-30", "Mushroom Pillow"),
+("Caja De Música", "13.jpg", "2015-05-16", "Columbia Records"),
+("Encanto Tropical", "14.jpg", "2018-05-18", "Sony Music"),
+("Hecho A Mano", "15.jpg", "2012-05-20", "Independiente");
 
 -- ISRC, titulo, fechaLanzamiento, rutacancion, idGenero, idAlbum, duracion, fechaInsercion 
 -- EL ÚLTIMO TOUR DEL MUNDO
