@@ -236,6 +236,7 @@ body .Contenedor2 .card .box .content a:hover {
 	width: 38%;
 }
 .BotonRegis {
+	text-align: center;
 	margin-top: 15px;
 	background-color: #1ed65e;
 	color: white;
@@ -363,4 +364,24 @@ body .Contenedor2 .card .box .content a:hover {
 	-webkit-background-clip: text;
 	-webkit-text-stroke: 0.3px rgb(0, 0, 0);
 
+}
+.Cerrar{
+	margin-top: 15px;
+	background-color: #1ED65E;
+	color:white;
+	font-family: "Poppins", sans-serif;
+	padding: 15px;
+	width: 40%;
+	height: 65px;
+	font-size: 25px;
+	border-radius: 15px;
+	transition: all .7s ease;
+}
+.Cerrar:hover{
+	width: 42%;
+	color:#1db954;
+	background-color: wheat;
+	border-color: #1db954;
+	transition: all .7s ease;
+	font-size: 27px;
 }

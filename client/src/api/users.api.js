@@ -8,4 +8,8 @@ const client = axios.create({
 
 const crearUsuarioRequest = async (data) => await client.post(`/users`, data);
 
-export { crearUsuarioRequest };
+const getUsuarioRequest = async (numId) => await client.get(`/users/${numId}`);
+
+const loginUsuarioRequest = async (data) => await client.post(`/login`, data);
+
+export { crearUsuarioRequest, getUsuarioRequest, loginUsuarioRequest };

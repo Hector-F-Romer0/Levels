@@ -11,6 +11,7 @@ import {
 	getUsuario,
 	getUsuarios,
 	updateUsuarios,
+	loginUsuario,
 } from "../controllers/users.controller.js";
 
 const router = Router();
@@ -28,6 +29,8 @@ router.get("/users/:id", getUsuario);
 router.get("/users", getUsuarios);
 
 router.post("/users", validarCrearUsuarios, createUsuarios);
+
+router.post("/login", loginUsuario);
 
 router.patch("/users/:id", updateUsuarios);
 

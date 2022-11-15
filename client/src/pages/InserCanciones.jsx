@@ -2,6 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import { getGenerosRequest } from "../api/genres.api.js"
+import { getAlbumesRequest } from '../api/albums.api.js';
 
 const InserCanciones = () => {
 
@@ -9,18 +10,31 @@ const InserCanciones = () => {
 
     const [loading, setLoading] = useState();
 
+    const [albumes, setAlbumes] = useState([])
+
+
     const cargarGeneros = async () => {
         setLoading(true);
         const res = await getGenerosRequest();
         console.log(res.data);
         setGeneros(res.data);
-        console.log(generos)
+        //console.log(generos)
+        setLoading(false);
+    };
+
+    const cargarAlbumes = async () => {
+        setLoading(true);
+        const res = await getAlbumesRequest();
+        console.log(res.data);
+        setAlbumes(res.data);
+        console.log(albumes)
         setLoading(false);
     };
 
     // Apenas cargue la página por primera vez, se llamará a un método que cargue las canciones
     useEffect(() => {
         cargarGeneros();
+        cargarAlbumes();
     }, []);
 
 
@@ -63,7 +77,14 @@ const InserCanciones = () => {
                 })}></input>
                 {errors.rutaCancion?.type === 'required' && <p className='Error'>El campo Ruta de canción es requerido</p>}
                 <h1 className='UserText'>Id del album</h1>
-                <input type="text" className='InputSong'{...register}></input>
+                <select className='InputSong'{...register('idAlbum', {
+                    reuired: true
+                })}>
+                    {albumes.map((item) => {
+                        return (
+                            <option key={item.idAlbum}>{item.titulo}</option>)
+                    })}
+                </select>
                 <h1 className='UserText'>Duración</h1>
                 <input type="text" className='InputSong'{...register('duracion', {
                     required: true

@@ -9,7 +9,8 @@ import Register from "./pages/Register.jsx";
 import Footer from "./components/Footer";
 import Login from "./pages/Login";
 import InserCanciones from "./pages/InserCanciones";
-// import Songs from "./components/Songs.jsx";
+import InserArtist from "./pages/InserArtist";
+import InserAlbum from "./pages/InserAlbum";
 
 const App = () => {
   return (
@@ -24,6 +25,8 @@ const App = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/InserSongs" element={<InserCanciones />} />
+        <Route path="/InserArtist" element={<InserArtist />} />
+        <Route path="/InserAlbum" element={<InserAlbum />} />
       </Routes>
       <Footer/>
     </BrowserRouter>
