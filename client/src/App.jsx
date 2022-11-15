@@ -9,11 +9,13 @@ import Register from "./pages/Register.jsx";
 import Footer from "./components/Footer";
 import Login from "./pages/Login";
 import InserCanciones from "./pages/InserCanciones";
+// import Songs from "./components/Songs.jsx";
 
 const App = () => {
   return (
     <BrowserRouter>
       <Navbar />
+      {/* <Songs/> */}
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/user/" element={<UserPage />} />
