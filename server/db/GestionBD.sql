@@ -16,7 +16,7 @@ apellidos varchar(50) not null,
 nombreUsuario varchar(25) not null, 
 correo varchar(50) not null, 
 contrasena varchar(15) not null, 
-tipo varchar(25) NOT NULL CHECK (Tipo = 'Admin' OR Tipo = 'Usuario'));
+tipoUsuario varchar(25) NOT NULL CHECK (Tipo = 'Admin' OR Tipo = 'Usuario'));
 
 create table if not exists canciones (
 isrc varchar(12) not null, 
@@ -52,7 +52,7 @@ FOREIGN KEY(idGenero) REFERENCES generos(idGenero) ON DELETE CASCADE);
 
 create table if not exists artistaXCanciones (
 idArtista int not null references artistas(idArtista) on delete cascade,
-isrc varchar(50) not null references canciones(isrc) on delete cascade,
+isrc varchar(12) not null references canciones(isrc) on delete cascade,
 constraint PrimaryKeyAxC primary key (idArtista, isrc));
 
 create table if not exists cancionesXUsuarios (
