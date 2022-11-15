@@ -6,10 +6,8 @@ const client = axios.create({
 	baseURL: beURI,
 });
 
-const getCancionesRequest = async () => await client.get(`/songs`);
-
-const getCancionesRecientesRequest = async () => await client.get(`/lastSongs`);
+const getCancionesHomeRequest = async () => await client.get(`/home/songs`);
 
 const getCancionRequest = async (id) => await client.get(`/song/${id}`);
 
-export { getCancionesRequest, getCancionRequest, getCancionesRecientesRequest };
+export { getCancionesHomeRequest };

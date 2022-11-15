@@ -7,6 +7,9 @@ SELECT * FROM artistas;
 SELECT * FROM albumes;
 SELECT * FROM canciones;
 
+SELECT * FROM artistaXCanciones AS axc INNER JOIN canciones AS c ON axc.isrc = c.isrc;
+
+
 DROP TABLE canciones;
 
 # Obtengo las 10 últimas canciones insertadas
@@ -88,3 +91,29 @@ DELETE FROM usuarios WHERE numeroIdentificacion='1234567890';
 
 # 7. El proyecto de aplicación web debe permitir al usuario buscar canciones por artista. 
 SELECT * FROM canciones WHERE id="";
+
+
+
+
+
+
+
+
+
+
+
+
+
+# FILTRO AÑO
+SELECT axc.isrc, a.nombreArtistico AS artista, a.fotoArtista, c.titulo AS tituloCancion, c.fechaLanzamiento, c.duracion,
+g.nombreGenero, al.titulo AS tituloAlbum,al.fotoAlbum FROM artistaXCanciones AS axc INNER JOIN artistas AS a
+ON axc.idArtista = a.idArtista INNER JOIN canciones AS c ON axc.isrc = c.isrc INNER JOIN generos AS g ON g.idGenero = c.idGenero
+INNER JOIN albumes as al  ON al.idAlbum = c.idAlbum WHERE YEAR(c.fechaLanzamiento) = '2020';
+
+# RECUPERA CÓDIGO, NOMBRES Y URL DE ÁLBUM Y ARTISTAS Y GÉNERO.
+SELECT axc.isrc, a.nombreArtistico, a.fotoArtista, c.titulo, c.fechaLanzamiento,
+c.duracion, g.nombreGenero, al.titulo,al.fotoAlbum, al.discografia
+ FROM artistaXCanciones AS axc INNER JOIN artistas AS a ON axc.idArtista = a.idArtista
+INNER JOIN canciones AS c ON axc.isrc = c.isrc INNER JOIN generos AS g ON g.idGenero = c.idGenero
+INNER JOIN albumes as al  ON al.idAlbum = c.idAlbum WHERE YEAR(c.fechaLanzamiento) = '2020';
+

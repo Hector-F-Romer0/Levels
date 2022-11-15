@@ -28,14 +28,25 @@
 	background-color: #84e932;
 	/* width: 60px;
 	height: 60px; */
-	max-width: 100%;
+	max-width: 70%;
 	/* max-height: 100px; */
+}
+
+/* .imgCard > .img {
+	max-width: 100%;
+} */
+
+.img > .imgCard {
+	/* max-width: 100%; */
 }
 
 .imgCard {
 	background-color: rgb(16, 68, 157);
-	max-width: 50%;
+	max-width: 40%;
+
 	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .infoImg {

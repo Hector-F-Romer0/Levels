@@ -2,10 +2,12 @@ import { Router } from "express";
 import {
 	getCancion,
 	getCanciones,
-	getCancionesRecientes,
+	getCancionesHome,
 	createCancion,
 	updateCancion,
 	eliminarCancion,
+	obtenerCancionesFiltroAño,
+	obtenerCancionesFiltroAlbum,
 } from "../controllers/songs.controller.js";
 
 const router = Router();
@@ -14,7 +16,13 @@ router.get("/songs/:id", getCancion);
 
 router.get("/songs", getCanciones);
 
-router.get("/lastSongs/", getCancionesRecientes);
+router.get("/home/songs", getCancionesHome);
+
+// router.get("/songsYearFilter/:filtro", obtenerCancionesFiltroAño);
+
+// router.get("/songsAlbumFilter/:filtro", obtenerCancionesFiltroAlbum);
+
+// router.get("/lastSongs/", getCancionesRecientes);
 
 router.post("/songs", createCancion);
 

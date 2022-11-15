@@ -17,7 +17,7 @@ const getCancion = async (req, res) => {
 
 const getCanciones = async (req, res) => {
 	try {
-		const [result] = await pool.query("SELECT * FROM canciones LIMIT 10");
+		const [result] = await pool.query("SELECT * FROM canciones");
 
 		if (result.length === 0) return res.status(404).json({ msg: `No existen canciones en la BD.` });
 
@@ -29,10 +29,10 @@ const getCanciones = async (req, res) => {
 	}
 };
 
-const getCancionesRecientes = async (req, res) => {
+const getCancionesHome = async (req, res) => {
 	try {
 		const [result] = await pool.query(
-			"SELECT axc.isrc, a.nombreArtistico AS artista, a.fotoArtista, c.titulo AS tituloCancion,c.rutaCancion, c.fechaLanzamiento, c.duracion, g.nombreGenero, al.titulo AS tituloAlbum,al.fotoAlbum FROM artistaXCanciones AS axc INNER JOIN artistas AS a ON axc.idArtista = a.idArtista INNER JOIN canciones AS c ON axc.isrc = c.isrc INNER JOIN generos AS g ON g.idGenero = c.idGenero INNER JOIN albumes as al  ON al.idAlbum = c.idAlbum ORDER BY c.fechaInsercion DESC LIMIT 10;"
+			"SELECT axc.isrc, a.nombreArtistico AS artista, a.fotoArtista, c.titulo AS tituloCancion,c.rutaCancion, c.fechaLanzamiento, c.duracion, g.nombreGenero, al.titulo AS tituloAlbum,al.fotoAlbum FROM artistaXCanciones AS axc INNER JOIN artistas AS a ON axc.idArtista = a.idArtista INNER JOIN canciones AS c ON axc.isrc = c.isrc INNER JOIN generos AS g ON g.idGenero = c.idGenero INNER JOIN albumes as al  ON al.idAlbum = c.idAlbum ORDER BY c.fechaInsercion DESC;"
 		);
 
 		if (result.length === 0) return res.status(404).json({ msg: `No existen canciones en la BD.` });
@@ -115,4 +115,53 @@ const eliminarCancion = async (req, res) => {
 	}
 };
 
-export { getCancion, getCanciones, getCancionesRecientes, createCancion, updateCancion, eliminarCancion };
+const obtenerCancionesFiltroAño = async (req, res) => {
+	try {
+		const [result] = await pool.query(
+			"SELECT axc.isrc, a.nombreArtistico AS artista, a.fotoArtista, c.titulo AS tituloCancion, c.fechaLanzamiento, c.duracion, g.nombreGenero, al.titulo AS tituloAlbum,al.fotoAlbum FROM artistaXCanciones AS axc INNER JOIN artistas AS a ON axc.idArtista = a.idArtista INNER JOIN canciones AS c ON axc.isrc = c.isrc INNER JOIN generos AS g ON g.idGenero = c.idGenero INNER JOIN albumes as al  ON al.idAlbum = c.idAlbum WHERE YEAR(c.fechaLanzamiento) = ?;",
+			[req.params.filtro]
+		);
+
+		if (result.length === 0)
+			return res
+				.status(404)
+				.json({ msg: `No se encuentran registros de canciones lanzadas en el año ${req.params.filtro}.` });
+
+		return res.status(200).json(result);
+	} catch (error) {
+		return res.status(500).json({
+			msg: error.message,
+		});
+	}
+};
+
+const obtenerCancionesFiltroAlbum = async (req, res) => {
+	try {
+		const [result] = await pool.query(
+			"SELECT axc.isrc, a.nombreArtistico, a.fotoArtista, c.titulo, c.fechaLanzamiento, c.duracion, g.nombreGenero, al.titulo,al.fotoAlbum, al.discografia FROM artistaXCanciones AS axc INNER JOIN artistas AS a ON axc.idArtista = a.idArtista INNER JOIN canciones AS c ON axc.isrc = c.isrc INNER JOIN generos AS g ON g.idGenero = c.idGenero INNER JOIN albumes as al  ON al.idAlbum = c.idAlbum WHERE tituloAlbum = ?;",
+			[req.params.filtro]
+		);
+
+		if (result.length === 0)
+			return res
+				.status(404)
+				.json({ msg: `No se encuentran registros de canciones lanzadas en el año ${req.params.filtro}.` });
+
+		return res.status(200).json(result);
+	} catch (error) {
+		return res.status(500).json({
+			msg: error.message,
+		});
+	}
+};
+
+export {
+	getCancion,
+	getCanciones,
+	getCancionesHome,
+	createCancion,
+	updateCancion,
+	eliminarCancion,
+	obtenerCancionesFiltroAño,
+	obtenerCancionesFiltroAlbum,
+};
