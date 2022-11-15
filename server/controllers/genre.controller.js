@@ -16,11 +16,19 @@ const getGenero = async (req, res) => {
 
 const getIdGenero = async (req, res) => {
 	try {
-		const [result] = await pool.query(`SELECT idGenero FROM generos WHERE nombreGenero = ?;`[req.body.genero]);
+		const { nombreGenero } = req.body;
+		const [existe] = await pool.query(`SELECT idGenero FROM generos WHERE nombreGenero = ?;`, [nombreGenero]);
 
-		if (result.length === 0) return res.status(404).json({ msg: `El género con id ${req.params.id} NO EXISTE.` });
+		const idGeneroBuscado = existe[0].idGenero;
 
-		return res.status(200).json(result[0]);
+		if (existe.length === 0) return res.status(404).json({ msg: `El género ${nombreGenero} NO EXISTE.` });
+
+		const [result] = await pool.query(
+			"SELECT axc.isrc, a.nombreArtistico AS artista, a.fotoArtista, c.titulo AS tituloCancion, c.fechaLanzamiento, c.duracion, g.nombreGenero, al.titulo AS tituloAlbum,al.fotoAlbum FROM artistaXCanciones AS axc INNER JOIN artistas AS a ON axc.idArtista = a.idArtista INNER JOIN canciones AS c ON axc.isrc = c.isrc INNER JOIN generos AS g ON g.idGenero = c.idGenero INNER JOIN albumes as al  ON al.idAlbum = c.idAlbum WHERE g.idGenero = ?;",
+			[idGeneroBuscado]
+		);
+
+		return res.status(200).json(result);
 	} catch (error) {
 		return res.status(500).json({
 			msg: error.message,

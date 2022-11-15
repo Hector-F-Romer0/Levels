@@ -3,12 +3,10 @@ import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 
 import { CancionesContext } from "../context/CancionesContext";
-import YearList from "./lists/YearList";
-import AlbumList from "./lists/AlbumList";
-import GenreList from "./lists/GenreList";
 
 import "../css/styles.css";
 import "../css/searchBar.css";
+import ListContainer from "./lists/ListContainer";
 
 const SearchBar = () => {
 	const { canciones } = useContext(CancionesContext);
@@ -51,9 +49,7 @@ const SearchBar = () => {
 					</div>
 				)}
 			</div>
-			<YearList />
-			<GenreList />
-			<AlbumList />
+			<ListContainer />
 		</>
 	);
 };
