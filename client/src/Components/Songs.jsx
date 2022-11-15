@@ -14,9 +14,9 @@ const Songs = ({ infoCancion }) => {
 				<h2>{infoCancion.artista}</h2>
 				<h3>{infoCancion.tituloAlbum}</h3>	
 				<br></br>
-				{<audio controls>
+				{/* {<audio controls>
 						<source src={`${apiUrlupload}/music/${infoCancion.rutaCancion}`} />
-					</audio> }			
+					</audio> }			 */}
 			</div>	
 			
 		</div>

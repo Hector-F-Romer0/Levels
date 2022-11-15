@@ -6,12 +6,12 @@ const Navbar = () => {
     <header>
       <h1 className="titulo">Levels</h1>
       <nav className="myNavbar">
-      <ul className="navUl">
+      {/* <ul className="navUl">
         <li>
-          <NavLink activeClassName='active' exact to="/" >Inicio</NavLink>
-          <NavLink activeClassName='active' exact to="/user/">Usuario</NavLink>
+          <NavLink className='active' exact to="/" >Inicio</NavLink>
+          <NavLink className='active' exact to="/user/">Usuario</NavLink>
         </li>
-      </ul>
+      </ul> */}
       </nav>
     </header>
   );

@@ -12,6 +12,7 @@ import Login from "./pages/Login";
 import InserCanciones from "./pages/InserCanciones";
 import InserArtist from "./pages/InserArtist";
 import InserAlbum from "./pages/InserAlbum";
+import InserGenero from "./pages/InserGenero";
 
 const App = () => {
 	return (
@@ -29,6 +30,7 @@ const App = () => {
 					<Route path="/inserArtist" element={<InserArtist />} />
 					<Route path="/inserAlbum" element={<InserAlbum />} />
 					<Route path="/songs/:isrc" element={<Login />} />
+					<Route path="/InserGenero" element={<InserGenero/>} />
 				</Routes>
 				<Footer/>
 			</BrowserRouter>

@@ -10,15 +10,16 @@ const Login = () => {
 		handleSubmit,
 	} = useForm();
 
-	const loginUsuario = (data) => {
-		const a = loginUsuarioRequest(data)
-			.then((res) => console.log(res))
-			.catch((e) => console.log(e));
-		console.log(a);
+	const loginUsuario = async (data) => {
+		console.log("Entré al loginUsuario");
+		const a = await loginUsuarioRequest(data)
+			console.log(a);
 	};
 
 	const OnSubmit = (data) => {
+		console.log("Holiwis")
 		loginUsuario(data);
+		console.log("Entré al onsubmit")
 	};
 
 	return (
@@ -34,7 +35,7 @@ const Login = () => {
 				<input type="input" className="LoginHolder" {...register("contrasena", { required: true })}></input>
 				{errors.contrasena?.type === "required" && <p className="Error">Debes de escribir tu contraseña</p>}
 				<br></br>
-				<input type="Submit" className="LoginBtn" value="Iniciar sesion" />
+				<button type="Submit" className="LoginBtn" >Iniciar sesión</button>
 			</form>
 		</div>
 	);
