@@ -10,8 +10,10 @@ const getCancionesHomeRequest = async () => await client.get(`/home/songs`);
 
 const getCancionesHomeYearRequest = async (yearFiltro) => await client.get(`/home/songs/years/query/${yearFiltro}`);
 
-const getIdGeneroRequest = async (genero) => await client.post(`/find/genre`, genero);
+const getIdGeneroYFiltrarRequest = async (genero) => await client.post(`/find/genre`, { nombreGenero: genero });
 
-const getCancionRequest = async (id) => await client.get(`/song/${id}`);
+const getIdAlbumYFiltrarRequest = async (album) => await client.post(`/find/album`, { nombreAlbum: album });
 
-export { getCancionesHomeRequest, getCancionesHomeYearRequest, getIdGeneroRequest };
+// const getCancionRequest = async (id) => await client.get(`/song/${id}`);
+
+export { getCancionesHomeRequest, getCancionesHomeYearRequest, getIdGeneroYFiltrarRequest, getIdAlbumYFiltrarRequest };

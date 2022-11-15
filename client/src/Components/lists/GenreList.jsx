@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { getGenerosRequest } from "../../api/genres.api";
-import { getIdGeneroRequest } from "../../api/searchs.api";
+import { getIdGeneroYFiltrarRequest } from "../../api/searchs.api";
 import { CancionesContext } from "../../context/CancionesContext";
 
 const GenreList = () => {
@@ -26,14 +26,12 @@ const GenreList = () => {
 
 	const filtrarPorGenero = async (genero) => {
 		setLoading(true);
-		const res = await getIdGeneroRequest(genero);
-		console.log(res);
-		// setCanciones(res.data);
+		const res = await getIdGeneroYFiltrarRequest(genero);
+		setCanciones(res.data);
 		setLoading(false);
 	};
 
 	const handleChange = (e) => {
-		console.log(e.target.value);
 		filtrarPorGenero(e.target.value);
 	};
 

@@ -91,4 +91,27 @@ const eliminarAlbum = async (req, res) => {
 	}
 };
 
-export { getAlbum, getAlbumes, createAlbum, updateAlbum, eliminarAlbum };
+const getIdAlbumAndFilter = async (req, res) => {
+	try {
+		const { nombreAlbum } = req.body;
+		const [existe] = await pool.query(`SELECT idAlbum FROM albumes WHERE titulo = ?;`, [nombreAlbum]);
+
+		if (existe.length === 0) return res.status(404).json({ msg: `El álbum ${nombreAlbum} NO EXISTE.` });
+		const idAlbumBuscado = existe[0].idAlbum;
+
+		const [result] = await pool.query(
+			"SELECT axc.isrc, a.nombreArtistico AS artista, a.fotoArtista, c.titulo AS tituloCancion, c.fechaLanzamiento, c.duracion, g.nombreGenero, al.titulo AS tituloAlbum,al.fotoAlbum FROM artistaXCanciones AS axc INNER JOIN artistas AS a ON axc.idArtista = a.idArtista INNER JOIN canciones AS c ON axc.isrc = c.isrc INNER JOIN generos AS g ON g.idGenero = c.idGenero INNER JOIN albumes as al  ON al.idAlbum = c.idAlbum WHERE al.idAlbum = ?;",
+			[idAlbumBuscado]
+		);
+
+		if (existe.length === 0) return res.status(404).json({ msg: `El álbum ${nombreAlbum} NO EXISTE.` });
+
+		return res.status(200).json(result);
+	} catch (error) {
+		return res.status(500).json({
+			msg: error.message,
+		});
+	}
+};
+
+export { getAlbum, getAlbumes, createAlbum, updateAlbum, eliminarAlbum, getIdAlbumAndFilter };
