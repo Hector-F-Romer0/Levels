@@ -13,11 +13,11 @@ const ListContainer = () => {
 	};
 
 	return (
-		<div className="">
+		<div className="Registerfiltro2">
 			<YearList />
 			<GenreList />
 			<AlbumList />
-			<button type="button" onClick={handleResetResults}>
+			<button type="button" className="InputSelect" onClick={handleResetResults}>
 				Eliminar filtros
 			</button>
 		</div>

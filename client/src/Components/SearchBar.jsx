@@ -28,7 +28,7 @@ const SearchBar = () => {
 
 	return (
 		<>
-			<div className="search">
+			<div className="Register2">
 				<div className="searchInputs">
 					<input
 						className="inputSearchK"
@@ -39,15 +39,17 @@ const SearchBar = () => {
 					{/* <div className="searchIcon"></div> */}
 				</div>
 				{/* Si el filtro de información contiene información, se mostrarán los resultados gracias al operador && */}
-				{filteredData.length !== 0 && (
-					<div className="dataResult">
-						{filteredData.slice(0, 10).map((value) => (
-							<Link className="dataItem" to={"/songs/id"} key={value.isrc}>
-								{value.tituloCancion}
-							</Link>
-						))}
-					</div>
+				<div className="inputSearch">
+					{filteredData.length !== 0 && (
+						<div className="dataResult">
+							{filteredData.slice(0, 10).map((value) => (
+								<Link className="dataItem" to={"/songs/id"} key={value.isrc}>
+									{value.tituloCancion}
+								</Link>
+							))}
+						</div>
 				)}
+				</div>
 			</div>
 			<ListContainer />
 		</>

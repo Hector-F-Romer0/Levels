@@ -21,7 +21,6 @@ const HomePage = () => {
 
 	return (
 		<div>
-			<h1>Hola</h1>
 			<SearchBar />
 			{/* <FormSubirImg /> */}
 			<div className="container">

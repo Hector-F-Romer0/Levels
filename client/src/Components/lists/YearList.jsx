@@ -31,12 +31,16 @@ const YearList = () => {
 	};
 
 	return (
-		<div className="Register">
-			<select className="InputSelect" onChange={handleChange}>
-				{years.map((item) => {
-					return <option key={item.year}>{item.year}</option>;
-				})}
-			</select>
+		<div className="Registerfiltro">
+			<label className="textofiltro">
+				Filtrado de canciones por año. 
+				</label> <br></br>
+				<br></br>
+				<select className="InputSelect" onChange={handleChange}>
+					{years.map((item) => {
+						return <option key={item.year}>{item.year}</option>;
+					})}
+				</select>
 		</div>
 	);
 };

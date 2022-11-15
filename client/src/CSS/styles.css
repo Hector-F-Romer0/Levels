@@ -35,8 +35,6 @@ header {
 	/* font-family:Georgia, 'Times New Roman', Times, serif; */
 }
 
-
-
 .navUl  li a {
 	text-decoration: none;
 	color: white;
@@ -95,9 +93,7 @@ input {
 	color: wheat;
 }
 
-::placeholder {
-	color: grey;
-}
+
 input:hover {
 	transition: all 0.7s ease;
 	border: 2px solid #5ab114;
@@ -483,3 +479,29 @@ a {
     font-size: 27px;
 }
 
+.textofiltro{
+	font-size: 30px;
+  	padding: 15px;
+  	font-family: "Poppins", sans-serif;
+	margin: 50px;
+}
+
+.Registerfiltro {
+	align-items: center;
+	text-align: center;
+	margin: 5px auto;
+	width: 80%;
+	margin-top: 15px;
+	padding: 15px;
+	gap: 10px;
+}
+
+.Registerfiltro2 {
+	align-items: center;
+	text-align: center;
+	margin: 5px auto;
+	width: 80%;
+	margin-top: 0px;
+	padding: 15px;
+	gap: 10px;
+}

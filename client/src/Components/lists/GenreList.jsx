@@ -36,12 +36,16 @@ const GenreList = () => {
 	};
 
 	return (
-		<div className="Register">
-			<select className="InputSelect" onChange={handleChange}>
-				{generos.map((item) => {
-					return <option key={item.idGenero}>{item.nombreGenero}</option>;
-				})}
-			</select>
+		<div className="Registerfiltro">
+			<label className="textofiltro">
+				Filtrado de canciones por género. 
+				</label> <br></br>
+				<br></br>
+				<select className="InputSelect" onChange={handleChange}>
+					{generos.map((item) => {
+						return <option key={item.idGenero}>{item.nombreGenero}</option>;
+					})}
+				</select>
 		</div>
 	);
 };

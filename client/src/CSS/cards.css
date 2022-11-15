@@ -13,15 +13,14 @@
 
 .card {
 	display: flex;
-	justify-content: space-around;
 	align-items: center;
 	background-color: #282828;
 	width: 600px;
-	height: 200px;
+	height: 250px;
     max-width: 600px;
-	max-height: 200px; 
+	max-height: 250px; 
 	gap: 40px;
-	margin: 10px;
+	margin: 15px;
 	border-radius: 10px;
 	box-shadow: 1.5px 1.5px 5px #1ed65e;
 	background-image: linear-gradient(
@@ -59,7 +58,8 @@
 
 .infoImg {
 	background-color: rgba(16, 68, 157, 0);
-	max-width: 50%;
+	width: 50%;
+	text-align: left;
 }
 
 h2 {
@@ -93,11 +93,10 @@ h2 {
 	-webkit-background-clip: text;
  } 
 
- .audio{
-	font-family: system-ui;
-	background-image: linear-gradient(
-		180deg,
-		#1ed65e,
-		#1ed65e
-	 );
+ audio::-webkit-media-controls-panel {
+	background-color: #1ed65e;
+  }
+
+ audio{
+	width:80%;
  }
