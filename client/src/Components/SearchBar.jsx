@@ -12,49 +12,49 @@ const SearchBar = () => {
 	const { canciones, setFiltroBusqueda, filtroBusqueda } = useContext(CancionesContext);
 	const [filteredData, setFilteredData] = useState([]);
 
-	let refArray = "";
-
-	// const adminFiltros = () => {
-	// 	let atributoFiltro;
-	// 	if (filtroBusqueda.buscarPor === "artista") {
-	// 		atributoFiltro = "nombreArtistico";
-	// 	} else if (filtroBusqueda.buscarPor === "canciones") {
-	// 		atributoFiltro = "tituloCancion";
-	// 	} else if (filtroBusqueda.buscarPor === "albumes") {
-	// 		atributoFiltro = "titulo";
-	// 	}
-	// 	return atributoFiltro;
-	// };
-
 	const handleFilter = (event) => {
 		const palabraBuscada = event.target.value;
-		// console.log(adminFiltros());
 		let filtro = "";
-		console.log(filtroBusqueda);
-		if (filtroBusqueda.buscarPor === "artistas") {
-			refArray = "nombreArtistico";
 
+		if (filtroBusqueda.buscarPor === "artistas") {
 			filtro = canciones.filter((value) => {
 				return value.nombreArtistico.toLowerCase().includes(palabraBuscada.toLowerCase());
 			});
 		} else if (filtroBusqueda.buscarPor === "canciones") {
-			refArray = "tituloCancion";
 			filtro = canciones.filter((value) => {
 				return value.tituloCancion.toLowerCase().includes(palabraBuscada.toLowerCase());
 			});
 		} else if (filtroBusqueda.buscarPor === "albumes") {
-			refArray = "titulo";
 			filtro = canciones.filter((value) => {
 				return value.titulo.toLowerCase().includes(palabraBuscada.toLowerCase());
 			});
 		}
-		console.log("REF ARRAY " + refArray);
-		console.log(refArray);
-
 		if (palabraBuscada === "") {
 			setFilteredData([]);
 		} else {
 			setFilteredData(filtro);
+		}
+	};
+
+	const last = (value, index) => {
+		if (filtroBusqueda.buscarPor === "artistas") {
+			return (
+				<Link className="dataItem" to={"/songs/id"} key={index}>
+					{value.nombreArtistico}
+				</Link>
+			);
+		} else if (filtroBusqueda.buscarPor === "canciones") {
+			return (
+				<Link className="dataItem" to={"/songs/id"} key={index}>
+					{value.tituloCancion}
+				</Link>
+			);
+		} else if (filtroBusqueda.buscarPor === "albumes") {
+			return (
+				<Link className="dataItem" to="/songs/id" key={index}>
+					{value.titulo}
+				</Link>
+			);
 		}
 	};
 
@@ -89,11 +89,7 @@ const SearchBar = () => {
 				{/* Si el filtro de información contiene información, se mostrarán los resultados gracias al operador && */}
 				{filteredData.length !== 0 && (
 					<div className="dataResult">
-						{filteredData.slice(0, 10).map((value, index) => (
-							<Link className="dataItem" to={"/songs/id"} key={index}>
-								{value[refArray]}
-							</Link>
-						))}
+						{filteredData.slice(0, 10).map((value, index) => last(value, index))}
 					</div>
 				)}
 			</div>
