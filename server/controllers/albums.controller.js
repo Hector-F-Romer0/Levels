@@ -29,6 +29,7 @@ const getAlbumes = async (req, res) => {
 };
 
 const createAlbum = async (req, res) => {
+	console.log("EN SERVER");
 	try {
 		const { titulo, fotoAlbum, idGenero, fechaLanzamiento, discografia } = req.body;
 		// Se verifica en la BD si YA existe el artista en la BD.

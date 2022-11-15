@@ -7,6 +7,7 @@ import { CancionesContext } from "../context/CancionesContext";
 import "../css/styles.css";
 import "../css/searchBar.css";
 import ListContainer from "./lists/ListContainer";
+import GenreList from "./lists/GenreList";
 
 const SearchBar = () => {
 	const { canciones, setFiltroBusqueda, filtroBusqueda } = useContext(CancionesContext);
@@ -96,10 +97,7 @@ const SearchBar = () => {
 			{filtroBusqueda.buscarPor === "canciones" ? (
 				<ListContainer />
 			) : (
-				<h1>
-					Estas filtrando por:
-					{filtroBusqueda.buscarPor}
-				</h1>
+				filtroBusqueda.buscarPor === "artistas" && <GenreList />
 			)}
 		</>
 	);
