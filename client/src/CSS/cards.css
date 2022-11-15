@@ -1,8 +1,9 @@
 .container {
+	gap:50px;
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
-	background-color: #d20df000;
+	background-color: #dd00ff00;
 	margin-top: 5%;
 	margin-right: 5%;
 	margin-left: 5%;
@@ -17,20 +18,33 @@
 	background-color: #282828;
 	width: 600px;
 	height: 200px;
-	/* max-width: 600px;
-	max-height: 200px; */
+    max-width: 600px;
+	max-height: 200px; 
 	gap: 40px;
 	margin: 10px;
 	border-radius: 10px;
+	box-shadow: 1.5px 1.5px 5px #1ed65e;
+	background-image: linear-gradient(
+		180deg,
+		#323232,
+		#282828
+	 );
 }
 
-
 .img {
+	background-color: #84e932;
+	width: 280px;
+	height: 190px; 
+	max-width: 77%;
+	max-height: 300px;
+	border-radius: 3%;
 
-	width: 60px;
-	height: 60px;
-	max-width: 100px;
-	max-height: 100px;
+}
+
+.imgCard {
+	background-color: rgba(16, 68, 157, 0);
+	max-width: 40%;
+	display: flex;
 }
 
 .infoImg {
@@ -51,6 +65,7 @@ h2 {
 	);
 	background-clip: text;
 	-webkit-background-clip: text;
+	
  } 
  
  h3 {
@@ -68,6 +83,11 @@ h2 {
 	-webkit-background-clip: text;
  } 
 
- .reproducir{
-	
+ .audio{
+	font-family: system-ui;
+	background-image: linear-gradient(
+		180deg,
+		#1ed65e,
+		#1ed65e
+	 );
  }

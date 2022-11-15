@@ -1,5 +1,4 @@
 import { pool } from "../db/conectionDB.js";
-import { verificarExiste } from "../helpers/gestionBD.js";
 
 const getAlbum = async (req, res) => {
 	try {
@@ -31,17 +30,18 @@ const getAlbumes = async (req, res) => {
 
 const createAlbum = async (req, res) => {
 	try {
-		const { titulo, fotoAlbum, idGenero, fechaLanzamiento } = req.body;
+		const { titulo, fotoAlbum, idGenero, fechaLanzamiento, discografia } = req.body;
 		// Se verifica en la BD si YA existe el artista en la BD.
 		const [existeAlbum] = await pool.query(`SELECT * FROM albumes WHERE titulo = ?`, [titulo]);
 		// Si el artista existe en la base de datos, devuelve un mensaje y no crea el registro.
 		if (existeAlbum.length > 0) return res.status(400).json({ msg: "El álbum ya está creado en la BD." });
 
-		const [result] = await pool.query("INSERT INTO albumes VALUES (default,?,?,?,?)", [
+		const [result] = await pool.query("INSERT INTO albumes VALUES (default,?,?,?,?,?)", [
 			titulo,
 			fotoAlbum,
 			fechaLanzamiento,
 			idGenero,
+			discografia,
 		]);
 
 		return res.status(200).json({
@@ -56,10 +56,10 @@ const createAlbum = async (req, res) => {
 
 const updateAlbum = async (req, res) => {
 	try {
-		const { titulo, fotoAlbum, idGenero, fechaLanzamiento } = req.body;
+		const { titulo, fotoAlbum, idGenero, fechaLanzamiento, discografia } = req.body;
 		const [result] = await pool.query(
-			"UPDATE albumes SET titulo = IFNULL(?,titulo), fotoAlbum = IFNULL(?,fotoAlbum), idGenero = IFNULL(?,idGenero), fechaLanzamiento = IFNULL(?,fechaLanzamiento) WHERE idAlbum = ?",
-			[titulo, fotoAlbum, idGenero, fechaLanzamiento, req.params.id]
+			"UPDATE albumes SET titulo = IFNULL(?,titulo), fotoAlbum = IFNULL(?,fotoAlbum), idGenero = IFNULL(?,idGenero), fechaLanzamiento = IFNULL(?,fechaLanzamiento),discografia = IFNULL(?,discografia) WHERE idAlbum = ?",
+			[titulo, fotoAlbum, idGenero, fechaLanzamiento, discografia, req.params.id]
 		);
 		if (result.affectedRows === 0)
 			return res.status(404).json({
