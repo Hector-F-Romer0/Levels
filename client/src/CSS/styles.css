@@ -1,9 +1,10 @@
 body {
-	background-color: black;
-	color: white;
+	background-color: rgb(27, 27, 27);
+	/* color: white;
 	margin: auto;
-	align-items: center;
+	align-items: center; */
 }
+
 header {
 	display: flex;
 	margin: 0;

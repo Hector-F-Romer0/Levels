@@ -1,8 +1,10 @@
 import React from "react";
 import { useState, useContext } from "react";
+import { Link } from "react-router-dom";
 
 import { CancionesContext } from "../context/CancionesContext";
 import "../css/styles.css";
+import "../css/searchBar.css";
 
 const SearchBar = () => {
 	const { canciones } = useContext(CancionesContext);
@@ -17,11 +19,10 @@ const SearchBar = () => {
 
 	const handleFilter = (event) => {
 		const palabraBuscada = event.target.value;
-		console.log(palabraBuscada);
 		const filtro = canciones.filter((value) => {
-			return value.titulo.toLowerCase().includes(palabraBuscada.toLowerCase());
+			return value.tituloCancion.toLowerCase().includes(palabraBuscada.toLowerCase());
 		});
-
+		// console.log(filteredData);
 		if (palabraBuscada === "") {
 			setFilteredData([]);
 		} else {
@@ -35,57 +36,26 @@ const SearchBar = () => {
 		<>
 			<div className="search">
 				<div className="searchInputs">
-					<input className="inputSearchBar" type="text" onChange={handleFilter} />
+					<input
+						className="inputSearchBar"
+						placeholder="Ingrese su búsqueda"
+						type="text"
+						onChange={handleFilter}
+					/>
 					{/* <div className="searchIcon"></div> */}
 				</div>
 				{/* Si el filtro de información contiene información, se mostrarán los resultados gracias al operador && */}
 				{filteredData.length !== 0 && (
 					<div className="dataResult">
 						{filteredData.slice(0, 10).map((value) => (
-							<a className="dataItem" href={value.rutaCancion} key={value.isrc}>
-								{value.titulo}
-							</a>
+							<Link className="dataItem" to={"/songs/id"} key={value.isrc}>
+								{value.tituloCancion}
+							</Link>
 						))}
 					</div>
 				)}
 			</div>
-			<div>
-				<label htmlFor="genero">Género</label>
-				<input
-					type="radio"
-					value="genero"
-					name="react-radio-button"
-					checked={opcionRadioEscogida("genero")}
-					onChange={handleRadioClick}
-				/>
-				<label htmlFor="artista">Artista</label>
-				<input
-					type="radio"
-					value="artista"
-					name="react-radio-button"
-					checked={opcionRadioEscogida("artista")}
-					onChange={handleRadioClick}
-				/>
-				<label htmlFor="año">Año</label>
-
-				<input
-					type="radio"
-					value="año"
-					name="react-radio-button"
-					checked={opcionRadioEscogida("año")}
-					onChange={handleRadioClick}
-				/>
-				<label htmlFor="ninguno">Ninguno</label>
-				<input
-					type="radio"
-					value="ninguno"
-					name="react-radio-button"
-					checked={opcionRadioEscogida("ninguno")}
-					onChange={handleRadioClick}
-				/>
-			</div>
 		</>
 	);
 };
-
 export default SearchBar;

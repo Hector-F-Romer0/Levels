@@ -8,12 +8,11 @@ import FormSubirImg from "../components/FormSubirImg";
 import { CancionesContext } from "../context/CancionesContext";
 
 const HomePage = () => {
-	const { canciones, loadingCanciones, cargarCanciones, cargarCancionesRecientes } = useContext(CancionesContext);
+	const { canciones, loadingCanciones, cargarCanciones, s } = useContext(CancionesContext);
 
 	// Apenas cargue la página por primera vez, se llamará a un método que cargue las canciones
 	useEffect(() => {
 		cargarCanciones();
-		// cargarCancionesRecientes();
 	}, []);
 
 	if (loadingCanciones) {

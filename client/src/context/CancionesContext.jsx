@@ -13,8 +13,6 @@ export const CancionesProvider = ({ children }) => {
 		const res = await getCancionesHomeRequest();
 		setCanciones(res.data);
 		setLoadingCanciones(false);
-		console.log(canciones);
-		console.log(canciones[8]);
 	};
 
 	return (

@@ -4,8 +4,6 @@ import "../css/cards.css";
 const Songs = ({ infoCancion }) => {
 	const apiUrlupload = "http://localhost:4000/uploads";
 
-	console.log(infoCancion);
-
 	return (
 		<div className="card">
 			<div className="imgCard">

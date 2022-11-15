@@ -21,6 +21,7 @@ const App = () => {
 					<Route path="*" element={<NotFoundPage />} />
 					<Route path="/register" element={<Register />} />
 					<Route path="/login" element={<Login />} />
+					<Route path="/songs/:isrc" element={<Login />} />
 				</Routes>
 			</BrowserRouter>
 		</CancionesProvider>
