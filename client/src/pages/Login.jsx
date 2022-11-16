@@ -1,10 +1,12 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { UserContext } from "../context/UserContext";
+import { Routes, Route, useNavigate } from "react-router-dom";
 
 import { loginUsuarioRequest, getUsuarioRequest } from "../api/users.api.js";
 
 const Login = () => {
+	const navigate = useNavigate();
 	const { setData } = useContext(UserContext);
 
 	const {
@@ -42,9 +44,9 @@ const Login = () => {
 		console.log(data);
 		const idUsuario = await loginUsuario(data);
 		console.log(idUsuario);
-		const hola = await getInformacionUsuario(idUsuario);
-		console.log(hola);
-		setData(hola);
+		const usuario = await getInformacionUsuario(idUsuario);
+		setData(usuario);
+		navigate("/HomeAdmin");
 	};
 
 	return (
