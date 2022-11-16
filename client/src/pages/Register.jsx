@@ -11,20 +11,23 @@ const Register = () => {
 		handleSubmit,
 	} = useForm();
 
-	const api = async (data) => {
-		console.log("Antes del await a la req");
-
-		console.log(data);
-		const a = await crearUsuarioRequest(data);
-		return a;
+	const api = async (info) => {
+		try {
+			console.log("Antes del await a la req");
+			const res = await crearUsuarioRequest(info);
+			const data = await res.json();
+			console.log(data);
+			return data;
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
-	const onSubmit = async (data) => {
+	const onSubmit = (data) => {
 		// Añadimos a la información del formulario el atributo "tipo", de esta manera se puede insertar el usuario en la BD
 		data.tipoUsuario = "Usuario";
 		console.log(data);
-		const a = await api(data);
-		console.log(a);
+		api(data);
 		// Mandamos la información a la base de datos
 
 		// enviarDatosAPI(data);
@@ -73,7 +76,7 @@ const Register = () => {
 					placeholder=" ej:1005785804"
 					id="id"
 					{...register("numId", { required: true })}></input>
-				{errors.id?.type === "required" && (
+				{errors.numId?.type === "required" && (
 					<p className="Error">El campo Documento de identidad es requerido</p>
 				)}
 				<br></br>
@@ -85,7 +88,7 @@ const Register = () => {
 					placeholder=" ej:xXPepito123proXx"
 					id="nombreUsuario"
 					{...register("nombreUsuario", { required: true })}></input>
-				{errors.usuario?.type === "required" && (
+				{errors.nombreUsuario?.type === "required" && (
 					<p className="Error">El campo Nombre de Usuario es requerido</p>
 				)}
 				<br></br>
@@ -97,7 +100,7 @@ const Register = () => {
 					placeholder=" ej:TerminatorHansolo@gmail.com"
 					id="email"
 					{...register("correo", { required: true })}></input>
-				{errors.email?.type === "required" && <p className="Error">El campo Correo es requerido</p>}
+				{errors.correo?.type === "required" && <p className="Error">El campo Correo es requerido</p>}
 				<br></br>
 				<label className="textRegis">Contraseña</label>
 				<br></br>

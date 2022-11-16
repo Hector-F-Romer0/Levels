@@ -6,6 +6,7 @@ import {
 	getAlbumes,
 	updateAlbum,
 	getIdAlbumAndFilter,
+	getAlbumNombre,
 } from "../controllers/albums.controller.js";
 
 const router = Router();
@@ -17,6 +18,8 @@ router.get("/albums", getAlbumes);
 router.post("/find/album", getIdAlbumAndFilter);
 
 router.post("/albums", createAlbum);
+
+router.post("/findAlbumbyName/", getAlbumNombre);
 
 router.patch("/albums/:id", updateAlbum);
 

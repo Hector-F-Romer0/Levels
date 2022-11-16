@@ -1,14 +1,20 @@
 body {
-	background-color: rgb(27, 27, 27);
-	color: white;
-	/* margin: auto;
-	align-items: center;  */
+	background-color: rgb(20, 20, 20);
+	color: rgb(255, 255, 255);
+	margin: auto;
+	align-items: center;
+	position: relative;
+	padding-bottom: 3em;
+	min-height: 100vh;
 }
 
 header {
 	display: flex;
 	margin: 0;
-	background-color: #1ed65e;
+	background-image: linear-gradient(
+		180deg,
+		#1ed65e,
+		#1bbd75);
 	border-radius: 0px;
 	align-items: center;
 	justify-content: space-between;
@@ -17,40 +23,54 @@ header {
 	border-bottom-right-radius: 15px;
 	font-family: system-ui;
 }
-.nav {
+.navUl li  {
+	font-size: 30px;
 	list-style: none;
 	padding: 5px;
-	margin: 5px;
 	justify-content: space-between;
 	display: flex;
-}
-
-.nav li {
 	margin-left: 70px;
-	padding: 12px 0;
+	padding: 4px 0;
 	position: relative;
+	/* font-family:Georgia, 'Times New Roman', Times, serif; */
 }
 
-.nav li a {
+.navUl  li a {
 	text-decoration: none;
 	color: white;
 	padding: 12px;
 }
 
-.nav li a::before {
+.navUl li a::before {
 	display: block;
 	content: "";
 	width: 0%;
-	background: black;
-	height: 5px;
-	top: 0;
+	background: rgb(75, 75, 75);
+	height: 3.5px;
+	top: -0;
 	position: absolute;
-	transition: width 1s;
+	transition: width 1.2s;
 }
 
-.nav li a:hover::before {
-	width: 100%;
+.navUl  li a:hover::before {
+	width: 30%;
 }
+
+footer {
+	text-align: center;
+	justify-content: center;
+	padding: 5px;
+	background-image: linear-gradient(
+		180deg,
+		#1ed65e,
+		#1bbd75);
+	color: #fff;
+	margin-top: auto;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+ }
+ 
 
 .Contenedor1 {
 	/* position: absolute; */
@@ -76,6 +96,7 @@ input {
 ::placeholder {
 	color: grey;
 }
+
 input:hover {
 	transition: all 0.7s ease;
 	border: 2px solid #5ab114;
@@ -200,18 +221,19 @@ input:hover {
 	width: 80%;
 	margin-top: 50px;
 	padding: 15px;
+	gap: 10px;
 }
 .textRegis {
-	font-size: 30px;
+	font-size: 28px;
 	padding: 15px;
 	font-family: "Poppins", sans-serif;
 }
 .Regis {
-	width: 50%;
+	width: 36%;
 	font-family: "Poppins", sans-serif;
 }
 .Regis:hover {
-	width: 52%;
+	width: 38%;
 }
 .BotonRegis {
 	text-align: center;
@@ -225,6 +247,11 @@ input:hover {
 	font-size: 25px;
 	border-radius: 15px;
 	transition: all 0.7s ease;
+	background-image: linear-gradient(
+	   180deg,
+	   #1ed65e,
+	   #19ba52
+	);
 }
 .BotonRegis:hover {
 	width: 27%;
@@ -353,12 +380,9 @@ input:focus {
 .dataItem p {
 	margin-left: 10px;
 }
+
 a {
 	text-decoration: none;
-}
-
-a:hover {
-	background-color: lightgrey;
 }
 
 #clearBtn {
@@ -368,57 +392,128 @@ a:hover {
 	text-align: center;
 	align-items: center;
 	margin: auto;
-	width: 60%;
+	width: 40%;
 	margin-top: 50px;
-	margin-bottom: 50px;
+	margin-bottom: 0px;
 	padding: 15px;
 	background-color: #2a2b2f;
 	border-radius: 15px;
 	border: 2px solid #999797;
+	box-shadow: 1.5px 1.5px 5px #575757;
 }
-.UserText {
+
+.UserText{
 	font-size: 30px;
-	padding: 15px;
-	font-family: "Poppins", sans-serif;
+  	padding: 15px;
+  	font-family: "Poppins", sans-serif;
 }
-.UserText2 {
+.UserText2{
 	font-size: 20px;
 	padding: 10px;
-	color: #1ed65e;
+	color: #1ED65E;
 }
-.caja {
-	display: table-cell;
+.caja{
+	display:table-cell;
 	text-align: center;
 	width: 33%;
 }
-.caja2 {
-	display: table-cell;
+.caja2{
+	display:table-cell;
 	text-align: center;
 	width: 37%;
 }
-.InputSong {
+.InputSong{
 	width: 70%;
 }
-.InputSong:hover {
+.InputSong:hover{
 	width: 72%;
 }
-.Cerrar {
+
+.titulo{
+	font-family: system-ui;
+	color: transparent;
+	font-size: 48px;
+	font-weight: 600;
+	letter-spacing: -0.015em;
+	background-image: linear-gradient(
+	   180deg,
+	   #ffffff,
+	   #b9b9b9
+	);
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-stroke: 0.3px rgb(0, 0, 0);
+
+}
+.Cerrar{
 	margin-top: 15px;
-	background-color: #1ed65e;
-	color: white;
+	background-color: #1ED65E;
+	color:white;
 	font-family: "Poppins", sans-serif;
 	padding: 15px;
 	width: 40%;
 	height: 65px;
 	font-size: 25px;
 	border-radius: 15px;
-	transition: all 0.7s ease;
+	transition: all .7s ease;
 }
-.Cerrar:hover {
+.Cerrar:hover{
 	width: 42%;
-	color: #1db954;
+	color:#1db954;
 	background-color: wheat;
 	border-color: #1db954;
-	transition: all 0.7s ease;
+	transition: all .7s ease;
 	font-size: 27px;
 }
+
+.InputSelect{
+	width: 50%;
+	height: 40px;
+	border-radius: 5px;
+	background: #1db954;
+	color: white;
+	transition: all .7s ease;
+	font-size: 20px;
+}
+
+.InputSelect:hover{
+	width:53%;
+    transition: all .7s ease;
+    font-size: 27px;
+}
+
+.textofiltro{
+	font-size: 20px;
+  	padding: 15px;
+  	font-family: "Poppins", sans-serif;
+	margin: 10px;
+	text-align: center;
+}
+
+.textofiltro2{
+	font-size: 25px;
+  	padding: 15px;
+  	font-family: "Poppins", sans-serif;
+	margin: 10px;
+	text-align: center;
+}
+
+.Registerfiltro {
+	align-items: center;
+	text-align: center;
+	margin: 5px auto;
+	width: 80%;
+	padding: 15px;
+	gap: 10px;
+}
+
+.Registerfiltro2 {
+	align-items: center;
+	text-align: center;
+	margin: 5px auto;
+	width: 80%;
+	margin-top: 0px;
+	padding: 15px;
+	gap: 10px;
+}
+

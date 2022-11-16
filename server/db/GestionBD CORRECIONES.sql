@@ -47,7 +47,7 @@ constraint PrimaryKeyGenero primary key(idGenero));
 create table if not exists albumes (
 idAlbum int not null PRIMARY KEY AUTO_INCREMENT, 
 titulo varchar(80) not null, 
-fotoAlbum varchar(100) not null, 
+fotoAlbum varchar(100) null, 
 fechaLanzamiento date not null,
 discografia VARCHAR(50) NOT NULL);
 

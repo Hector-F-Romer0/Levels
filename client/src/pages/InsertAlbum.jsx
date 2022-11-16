@@ -1,15 +1,12 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useState, useEffect } from "react";
-import axios from "axios";
 
-import FormSubirImg from "../components/FormSubirImg";
 import { getGenerosRequest } from "../api/genres.api.js";
-import { postAlbumesRequest } from "../api/albums.api.js";
+import { postAlbumesRequest, getAlbumIdRequest, updateAlbumRequest } from "../api/albums.api.js";
+import { subirImagenBD } from "../api/image.api.js";
 
 const InsertAlbum = () => {
-	const beURL = "http://localhost:4000/api/uploads/img";
-
 	const [imagen, setImagen] = useState();
 	const [generos, setGeneros] = useState([]);
 	const [loading, setLoading] = useState();
@@ -33,39 +30,62 @@ const InsertAlbum = () => {
 	} = useForm();
 
 	const crearUsuarioBD = async (data) => {
-		console.log("Entra antes de AXIOS");
-		const res = await postAlbumesRequest(data);
-		console.log(res);
+		try {
+			const res = await postAlbumesRequest(data);
+			console.log(res);
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
+	const actualizarImgAlbum = async (dataActualizda, idAlbum) => {
+		try {
+			const res = await updateAlbumRequest(dataActualizda, idAlbum);
+			return res.data;
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const obtenerIdAlbum = async (titulo) => {
+		try {
+			console.log(titulo);
+			const res = await getAlbumIdRequest(titulo);
+			return res.data.idAlbum;
+		} catch (error) {
+			await console.log(error.response);
+		}
+	};
+
+	// * -------------------------------------------------------------------------------------------------------
+	// * TRATAMIENTO PARA SUBIR LA IMAGEN
 	const selectedImg = (e) => {
 		console.log(e.target.files[0]);
 		setImagen(e.target.files[0]);
 	};
 
-	const onSubmit = (data) => {
-		console.log(data);
+	// * -------------------------------------------------------------------------------------------------------
+
+	const onSubmit = async (data) => {
+		// IMAGEN
 		if (!imagen) {
-			console.log("La imagen no tiene información.");
+			return console.log("La imagen no tiene información.");
 		}
+
+		// 1. Se crea el usuario en la BD sin la url de la imagen. (Se añade después)
+		await crearUsuarioBD(data);
+		// 2. Obtengo el id del usuario que acabo de crear
+		const idBuscado = await obtenerIdAlbum(data.titulo);
+		// 3. Configuro la siguiente petición para mandar la imagen
 		const formdata = new FormData();
 		formdata.append("imgAlbum", imagen);
-
-		axios({
-			method: "post",
-			url: "myurl",
-			data: data,
-			headers: { "Content-Type": "multipart/form-data" },
-		});
-		formdata.append("data", data);
-		// axios.post(beURL, formdata);
-		console.log(formdata);
-		// fetch("http://localhost:4000/api/uploads", {
-		// 	method: "POST",
-		// 	body: formdata,
-		// });
+		subirImagenBD(formdata, idBuscado);
+		// 4. Actualizar el atributo de la URL al álbum recíen creado
+		const urlAlbum = `${idBuscado}.jpg`;
+		console.log(urlAlbum);
+		const res = await actualizarImgAlbum(urlAlbum, idBuscado);
+		console.log(res);
 		setImagen(null);
-		// crearUsuarioBD(data);
 	};
 
 	if (loading) {

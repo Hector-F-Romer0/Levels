@@ -32,13 +32,16 @@ const AlbumList = () => {
 	};
 
 	return (
-		<>
-			<select className="InputSong" onChange={handleChange}>
-				{albumes.map((item) => {
-					return <option key={item.idAlbum}>{item.titulo}</option>;
-				})}
-			</select>
-		</>
+		<div className="Registerfiltro">
+			<h1 className="textofiltro">
+				Filtrado de canciones por álbum. 
+				</h1> 
+				<select className="InputSelect" onChange={handleChange}>
+					{albumes.map((item) => {
+						return <option key={item.idAlbum}>{item.titulo}</option>;
+					})}
+				</select>
+		</div>
 	);
 };
 

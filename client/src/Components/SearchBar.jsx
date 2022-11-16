@@ -1,13 +1,12 @@
 import React from "react";
 import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
-
+import GenreList from "./lists/GenreList";
 import { CancionesContext } from "../context/CancionesContext";
 
 import "../css/styles.css";
 import "../css/searchBar.css";
 import ListContainer from "./lists/ListContainer";
-import GenreList from "./lists/GenreList";
 
 const SearchBar = () => {
 	const { canciones, setFiltroBusqueda, filtroBusqueda } = useContext(CancionesContext);
@@ -64,24 +63,25 @@ const SearchBar = () => {
 	};
 
 	return (
-		<>
-			{<h1>Estas filtrando por: {filtroBusqueda.buscarPor}</h1>}
-			<div>
-				<h1>Buscar por</h1>
-				<button type="button" onClick={() => handleSearchParam("canciones")}>
+		<div className="Registerfiltro">
+			{<h1 className="textofiltro2">Estas filtrando por: {filtroBusqueda.buscarPor}</h1>}
+			<h1 className="textofiltro2">Buscar por</h1>
+			<br></br>
+			<div className="searchInputs">
+				<button type="button" className="InputSelect" onClick={() => handleSearchParam("canciones")}>
 					Canciones
 				</button>
-				<button type="button" onClick={() => handleSearchParam("artistas")}>
+				<button type="button" className="InputSelect" onClick={() => handleSearchParam("artistas")}>
 					Artistas x genero
 				</button>
-				<button type="button" onClick={() => handleSearchParam("albumes")}>
+				<button type="button" className="InputSelect" onClick={() => handleSearchParam("albumes")}>
 					Albumes
 				</button>
 			</div>
-			<div className="search">
+			<div className="Register2">
 				<div className="searchInputs">
 					<input
-						className="inputSearchBar"
+						className="inputSearchK"
 						placeholder="Ingrese su búsqueda"
 						type="text"
 						onChange={handleFilter}
@@ -99,7 +99,7 @@ const SearchBar = () => {
 			) : (
 				filtroBusqueda.buscarPor === "artistas" && <GenreList />
 			)}
-		</>
+		</div>
 	);
 };
 export default SearchBar;

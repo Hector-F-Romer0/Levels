@@ -6,9 +6,7 @@ import { getAlbumesRequest } from "../api/albums.api.js";
 
 const InserCanciones = () => {
 	const [generos, setGeneros] = useState([]);
-
 	const [loading, setLoading] = useState();
-
 	const [albumes, setAlbumes] = useState([]);
 
 	const cargarGeneros = async () => {

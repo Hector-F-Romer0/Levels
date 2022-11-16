@@ -1,15 +1,24 @@
-import React from 'react'
+import React from "react";
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
-  return (
-    <header> 
-          <h1>Levels</h1>
-            <nav>  
-              <li><a href='#'>Inicio</a></li>
-              <li><a href='#'>Usuario</a></li>
-            </nav>  
-        </header>
-  )
-}
+	return (
+		<header>
+			<h1 className="titulo">Levels</h1>
+			<nav className="myNavbar">
+				<ul className="navUl">
+					<li>
+						<NavLink className="active" to="/">
+							Inicio
+						</NavLink>
+						<NavLink className="active" to="/user/">
+							Usuario
+						</NavLink>
+					</li>
+				</ul>
+			</nav>
+		</header>
+	);
+};
 
-export default Navbar
+export default Navbar;
