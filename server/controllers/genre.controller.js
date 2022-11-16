@@ -51,6 +51,7 @@ const getGeneros = async (req, res) => {
 };
 
 const createGenero = async (req, res) => {
+	console.log("Entré al post");
 	try {
 		const { nombreGenero } = req.body;
 		const [result] = await pool.query("INSERT INTO generos VALUES (default,?)", [nombreGenero]);

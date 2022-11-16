@@ -1,24 +1,50 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
+import { UserContext } from "../context/UserContext";
 
-import { loginUsuarioRequest } from "../api/users.api.js";
+import { loginUsuarioRequest, getUsuarioRequest } from "../api/users.api.js";
 
 const Login = () => {
+	const { setData } = useContext(UserContext);
+
 	const {
 		register,
 		formState: { errors },
 		handleSubmit,
 	} = useForm();
 
-	const loginUsuario = (data) => {
-		const a = loginUsuarioRequest(data)
-			.then((res) => console.log(res))
-			.catch((e) => console.log(e));
-		console.log(a);
+	const loginUsuario = async (data) => {
+		try {
+			console.log("Entré al loginUsuario");
+			const existe = await loginUsuarioRequest(data);
+			const idUsuario = await existe.data.numId;
+
+			if (existe.status === 200) {
+				console.log("SI EXISTE");
+				return idUsuario;
+			}
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
-	const OnSubmit = (data) => {
-		loginUsuario(data);
+	const getInformacionUsuario = async (id) => {
+		try {
+			const res = await getUsuarioRequest(id);
+			return res.data;
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const OnSubmit = async (data) => {
+		// loginUsuario(data);
+		console.log(data);
+		const idUsuario = await loginUsuario(data);
+		console.log(idUsuario);
+		const hola = await getInformacionUsuario(idUsuario);
+		console.log(hola);
+		setData(hola);
 	};
 
 	return (
@@ -31,10 +57,12 @@ const Login = () => {
 				<br></br>
 				<label className="LoginText">Contraseña</label>
 				<br></br>
-				<input type="input" className="LoginHolder" {...register("contrasena", { required: true })}></input>
+				<input type="password" className="LoginHolder" {...register("contrasena", { required: true })}></input>
 				{errors.contrasena?.type === "required" && <p className="Error">Debes de escribir tu contraseña</p>}
 				<br></br>
-				<input type="Submit" className="LoginBtn" value="Iniciar sesion" />
+				<button type="Submit" className="LoginBtn">
+					Iniciar sesión
+				</button>
 			</form>
 		</div>
 	);

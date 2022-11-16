@@ -12,27 +12,32 @@ import Login from "./pages/Login";
 import InserCanciones from "./pages/InserCanciones";
 import InserArtist from "./pages/InserArtist";
 import InsertAlbum from "./pages/InsertAlbum";
+import InserGenero from "./pages/InserGenero";
+import { UserProvider } from "./context/UserContext";
 
 const App = () => {
 	return (
-		<CancionesProvider>
-			<BrowserRouter>
-				<Navbar />
-				<Routes>
-					<Route path="/" element={<HomePage />} />
-					<Route path="/user/" element={<UserPage />} />
-					<Route path="/user/:id" element={<UserPage />} />
-					<Route path="*" element={<NotFoundPage />} />
-					<Route path="/register" element={<Register />} />
-					<Route path="/login" element={<Login />} />
-					<Route path="/inserSongs" element={<InserCanciones />} />
-					<Route path="/inserArtist" element={<InserArtist />} />
-					<Route path="/insertAlbum" element={<InsertAlbum />} />
-					<Route path="/songs/:isrc" element={<Login />} />
-				</Routes>
-				<Footer/>
-			</BrowserRouter>
-		</CancionesProvider>
+		<UserProvider>
+			<CancionesProvider>
+				<BrowserRouter>
+					<Navbar />
+					<Routes>
+						<Route path="/" element={<HomePage />} />
+						<Route path="/user/" element={<UserPage />} />
+						<Route path="/user/:id" element={<UserPage />} />
+						<Route path="*" element={<NotFoundPage />} />
+						<Route path="/register" element={<Register />} />
+						<Route path="/login" element={<Login />} />
+						<Route path="/inserSongs" element={<InserCanciones />} />
+						<Route path="/inserArtist" element={<InserArtist />} />
+						<Route path="/insertAlbum" element={<InsertAlbum />} />
+						<Route path="/songs/:isrc" element={<Login />} />
+						<Route path="/InserGenero" element={<InserGenero />} />
+					</Routes>
+					<Footer />
+				</BrowserRouter>
+			</CancionesProvider>
+		</UserProvider>
 	);
 };
 

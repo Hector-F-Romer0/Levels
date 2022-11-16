@@ -7,4 +7,5 @@ const client = axios.create({
 });
 
 const getGenerosRequest = async () => await client.get(`/genres`);
-export { getGenerosRequest };
+const postGenerosRequest = async (data) => await client.post(`/genres`, data);
+export { getGenerosRequest, postGenerosRequest };
