@@ -6,5 +6,9 @@ const client = axios.create({
 	baseURL: beURI,
 });
 
+const postCancionRequest = async (data) => {
+	return await client.post(`/songs`, data);
+};
+
 const getYearRequest = async () => await client.get(`/home/songs/years`);
-export { getYearRequest };
+export { getYearRequest, postCancionRequest };

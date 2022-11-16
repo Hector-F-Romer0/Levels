@@ -8,9 +8,10 @@ const __dirname = path.dirname(__filename);
 
 // Configuraciones de cómo se guardarán los archivos
 const storageMusic = multer.diskStorage({
-	destination: path.resolve(__dirname, "../uploads/music/"),
+	destination: path.resolve(__dirname, "../uploads/music"),
 	filename: (req, file, cb) => {
-		cb(null, `${file.originalname}`);
+		console.log(req.params.isrc);
+		cb(null, `${req.params.isrc}.wav`);
 	},
 });
 
@@ -39,7 +40,7 @@ const filtrarSoloAudios = (req, file, cb) => {
 
 // Especificamos que se subirá un solo archivo que tenga el id de 'testImg'
 const uploadAlbum = multer({ storage: storageImageAlbum, fileFilter: filtrarSoloImagenes }).single("imgAlbum");
-const uploadAudio = multer({ storage: storageMusic, fileFilter: filtrarSoloAudios }).single("testAudio");
+const uploadAudio = multer({ storage: storageMusic, fileFilter: filtrarSoloAudios }).single("audioCancion");
 
 // * CONFIGURACIONES DEL ACCESO A LA IMAGEN
 const getImagen = async (req, res) => {

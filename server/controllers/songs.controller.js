@@ -61,8 +61,11 @@ const getCancionesHome = async (req, res) => {
 
 const createCancion = async (req, res) => {
 	try {
-		const { isrc, titulo, fechaLanzamiento, rutaCancion, idGenero, idAlbum, duracion } = req.body;
+		const { isrc, titulo, fechaLanzamiento, idGenero, idAlbum, duracion } = req.body;
+		const rutaCancion = `${isrc}.wav`;
 		console.log(req.body);
+
+		console.log(rutaCancion);
 		// Se verifica en la BD si YA existe la canción en la BD.
 		const [existeCancion] = await pool.query(`SELECT * FROM canciones WHERE isrc = ?`, [isrc]);
 

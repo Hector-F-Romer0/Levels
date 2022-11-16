@@ -29,6 +29,8 @@ router.get("/home/songs/years/query/:filtro", obtenerCancionesFiltroYear);
 
 router.post("/songs", createCancion);
 
+router.post("/songs", createCancion);
+
 router.patch("/songs/:id", updateCancion);
 
 router.delete("/songs/:id", eliminarCancion);

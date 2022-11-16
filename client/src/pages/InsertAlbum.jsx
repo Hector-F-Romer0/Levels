@@ -71,6 +71,7 @@ const InsertAlbum = () => {
 		if (!imagen) {
 			return console.log("La imagen no tiene información.");
 		}
+		console.log(data);
 
 		// 1. Se crea el usuario en la BD sin la url de la imagen. (Se añade después)
 		await crearUsuarioBD(data);
@@ -144,9 +145,7 @@ const InsertAlbum = () => {
 				<br></br>
 				{errors.discografia?.type === "required" && <p className="Error">El campo Discografia es requerido</p>}
 
-				<h1>Test de cargar archivo</h1>
-				{/* <form action="#" encType="multipart/form-data"> */}
-				<label htmlFor="file"></label>
+				<label htmlFor="file">Imágen del album</label>
 				<input type="file" name="imgAlbum" id="file" accept=".jpg" onChange={selectedImg} />
 
 				<button type="Submit" className="BotonRegis">
