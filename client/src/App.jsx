@@ -13,10 +13,19 @@ import InserCanciones from "./pages/InserCanciones";
 import InserArtist from "./pages/InserArtist";
 import InserAlbum from "./pages/InserAlbum";
 import InserGenero from "./pages/InserGenero";
+import { DataProvider } from "./context/DataContext";
 
 const App = () => {
 	return (
-		<CancionesProvider>
+		<DataProvider>
+
+
+			<div className="container">
+				
+			</div>
+
+
+			<CancionesProvider>
 			<BrowserRouter>
 				<Navbar />
 				<Routes>
@@ -35,7 +44,10 @@ const App = () => {
 				<Footer/>
 			</BrowserRouter>
 		</CancionesProvider>
+		</DataProvider>
+		
 	);
+	
 };
 
 export default App;
