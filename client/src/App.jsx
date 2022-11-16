@@ -13,6 +13,8 @@ import InserCanciones from "./pages/InserCanciones";
 import InserArtist from "./pages/InserArtist";
 import InsertAlbum from "./pages/InsertAlbum";
 import InserGenero from "./pages/InserGenero";
+import HomeAdmin from "./pages/HomeAdmin";
+
 import { UserProvider } from "./context/UserContext";
 
 const App = () => {
@@ -33,6 +35,7 @@ const App = () => {
 						<Route path="/insertAlbum" element={<InsertAlbum />} />
 						<Route path="/songs/:isrc" element={<Login />} />
 						<Route path="/InserGenero" element={<InserGenero />} />
+						<Route path="/HomeAdmin" element={<HomeAdmin />} />
 					</Routes>
 					<Footer />
 				</BrowserRouter>
