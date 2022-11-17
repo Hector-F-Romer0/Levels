@@ -1,11 +1,26 @@
 SHOW TABLES;
-use levels2;
+use levels;
 
 SELECT * FROM usuarios;
 SELECT * FROM generos;
 SELECT * FROM artistas;
 SELECT * FROM albumes;
+select * from generos;
+
 SELECT * FROM canciones;
+
+
+# ANTES DE QUE SE ACABE QMFME2066849
+SELECT * FROM canciones WHERE isrc = 'QMFME2066849';
+delete FROM canciones WHERE isrc = 'QMFME2066849';
+
+
+
+
+SELECT idGenero FROM generos WHERE nombreGenero = 'Rock';
+
+
+SELECT DISTINCT YEAR(fechaLanzamiento) AS year FROM canciones;
 
 SELECT * FROM artistaXCanciones AS axc INNER JOIN canciones AS c ON axc.isrc = c.isrc;
 
@@ -61,6 +76,7 @@ INNER JOIN albumes as al  ON al.idAlbum = c.idAlbum ORDER BY c.fechaInsercion DE
 SELECT axc.isrc, a.nombreArtistico AS artista, a.fotoArtista, c.titulo AS tituloCancion, c.fechaLanzamiento, c.duracion, g.nombreGenero, al.titulo AS tituloAlbum,al.fotoAlbum FROM artistaXCanciones AS axc INNER JOIN artistas AS a ON axc.idArtista = a.idArtista INNER JOIN canciones AS c ON axc.isrc = c.isrc INNER JOIN generos AS g ON g.idGenero = c.idGenero INNER JOIN albumes as al  ON al.idAlbum = c.idAlbum ORDER BY c.fechaInsercion DESC LIMIT 10;
 
 
+
 SELECT  c.isrc,c.titulo,c.fechaLanzamiento,c.rutaCancion,c.duracion,g.nombreGenero, a.titulo,a.fotoAlbum, a.discografia
 FROM canciones AS c INNER JOIN generos AS g ON c.idGenero = g.idGenero INNER JOIN albumes AS a ON c.idAlbum=a.idAlbum;
 
@@ -103,12 +119,8 @@ SELECT * FROM canciones WHERE id="";
 
 
 
+#-----------------------------------------------------------------------------
 
-# FILTRO AÑO
-SELECT axc.isrc, a.nombreArtistico AS artista, a.fotoArtista, c.titulo AS tituloCancion, c.fechaLanzamiento, c.duracion,
-g.nombreGenero, al.titulo AS tituloAlbum,al.fotoAlbum FROM artistaXCanciones AS axc INNER JOIN artistas AS a
-ON axc.idArtista = a.idArtista INNER JOIN canciones AS c ON axc.isrc = c.isrc INNER JOIN generos AS g ON g.idGenero = c.idGenero
-INNER JOIN albumes as al  ON al.idAlbum = c.idAlbum WHERE YEAR(c.fechaLanzamiento) = '2020';
 
 # RECUPERA CÓDIGO, NOMBRES Y URL DE ÁLBUM Y ARTISTAS Y GÉNERO.
 SELECT axc.isrc, a.nombreArtistico, a.fotoArtista, c.titulo, c.fechaLanzamiento,
@@ -116,4 +128,32 @@ c.duracion, g.nombreGenero, al.titulo,al.fotoAlbum, al.discografia
  FROM artistaXCanciones AS axc INNER JOIN artistas AS a ON axc.idArtista = a.idArtista
 INNER JOIN canciones AS c ON axc.isrc = c.isrc INNER JOIN generos AS g ON g.idGenero = c.idGenero
 INNER JOIN albumes as al  ON al.idAlbum = c.idAlbum WHERE YEAR(c.fechaLanzamiento) = '2020';
+
+# FILTRO AÑO
+SELECT axc.isrc, a.nombreArtistico AS artista, a.fotoArtista, c.titulo AS tituloCancion, c.fechaLanzamiento, c.duracion,
+g.nombreGenero, al.titulo AS tituloAlbum,al.fotoAlbum FROM artistaXCanciones AS axc INNER JOIN artistas AS a
+ON axc.idArtista = a.idArtista INNER JOIN canciones AS c ON axc.isrc = c.isrc INNER JOIN generos AS g ON g.idGenero = c.idGenero
+INNER JOIN albumes as al  ON al.idAlbum = c.idAlbum WHERE YEAR(c.fechaLanzamiento) = '2020';
+
+# QUERY PARA RECUPERAR LAS CANCIONES POR ALBUM
+SELECT axc.isrc, a.nombreArtistico, a.fotoArtista, c.titulo, c.fechaLanzamiento, c.duracion, g.nombreGenero, al.titulo,al.fotoAlbum, al.discografia FROM artistaXCanciones AS axc INNER JOIN artistas AS a ON axc.idArtista = a.idArtista INNER JOIN canciones AS c ON axc.isrc = c.isrc INNER JOIN generos AS g ON g.idGenero = c.idGenero INNER JOIN albumes as al  ON al.idAlbum = c.idAlbum WHERE al.titulo = 'YHLQMDLG';
+
+# QUERY PARA RECUPERAR LAS CANCIONES POR GENERO
+SELECT axc.isrc, a.nombreArtistico, a.fotoArtista, c.titulo, c.fechaLanzamiento, c.duracion, g.nombreGenero, al.titulo,al.fotoAlbum, al.discografia FROM artistaXCanciones AS axc INNER JOIN artistas AS a ON axc.idArtista = a.idArtista INNER JOIN canciones AS c ON axc.isrc = c.isrc INNER JOIN generos AS g ON g.idGenero = c.idGenero INNER JOIN albumes as al  ON al.idAlbum = c.idAlbum WHERE g.nombreGenero = 'Reguetón';
+
+SELECT axc.isrc, a.nombreArtistico AS artista, a.fotoArtista, c.titulo AS tituloCancion, c.fechaLanzamiento, c.duracion, g.nombreGenero, al.titulo AS tituloAlbum,al.fotoAlbum FROM artistaXCanciones AS axc INNER JOIN artistas AS a ON axc.idArtista = a.idArtista INNER JOIN canciones AS c ON axc.isrc = c.isrc INNER JOIN generos AS g ON g.idGenero = c.idGenero INNER JOIN albumes as al  ON al.idAlbum = c.idAlbum WHERE g.idGenero = '3';
+
+
+
+
+
+
+
+USE levels;
+
+
+
+
+
+SELECT * FROM usuarios WHERE nombreUsuario = 'Cuchillita4s' AND contrasena = '1987';
 

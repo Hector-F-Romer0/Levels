@@ -91,16 +91,16 @@ const eliminarUsuario = async (req, res) => {
 
 const loginUsuario = async (req, res) => {
 	try {
-		console.log(req.body);
 		const { nombreUsuario, contrasena } = req.body;
 		const [result] = await pool.query("SELECT * FROM usuarios WHERE nombreUsuario = ? AND contrasena = ?", [
 			nombreUsuario,
 			contrasena,
 		]);
+		console.log(result);
 
 		if (result.length > 0) {
 			console.log("EXISTE");
-			return res.status(200).json({ numId: result[0].numId });
+			return res.status(200).json({ numId: result[0].numId, tipoUsuario: result[0].tipo });
 		} else {
 			console.log("NO EXISTE");
 			return res.status(402).json({ msg: `NO EXISTE USUARIO` });

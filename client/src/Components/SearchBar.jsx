@@ -60,6 +60,7 @@ const SearchBar = () => {
 
 	const handleSearchParam = (filtro) => {
 		setFiltroBusqueda({ buscarPor: filtro });
+		console.log(filtroBusqueda);
 	};
 
 	return (

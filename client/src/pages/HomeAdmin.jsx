@@ -5,7 +5,7 @@ import SongsAdmin from "../components/SongsAdmin";
 import ArtistsCardAdmin from "../components/ArtistsCardAdmin";
 import AlbumCardAdmin from "../components/AlbumCardAdmin";
 import SearchBar from "../components/SearchBar";
-import InserCanciones from "./InserCanciones";
+import { Routes, Route, useNavigate } from "react-router-dom";
 
 import { CancionesContext } from "../context/CancionesContext";
 import { NavLink } from "react-router-dom";
@@ -14,7 +14,10 @@ const HomeAdmin = () => {
 	const { canciones, loadingCanciones, cargarCanciones, filtroBusqueda, setFiltroBusqueda } =
 		useContext(CancionesContext);
 
+	const navigate = useNavigate();
+
 	const renderizacionCards = (item, index) => {
+		console.log("Dentro de renderizar");
 		if (filtroBusqueda.buscarPor === "canciones") {
 			return <SongsAdmin infoCancion={item} key={index} />;
 		}
@@ -25,11 +28,19 @@ const HomeAdmin = () => {
 		}
 	};
 
-
+	const cerrarSesion = () => {
+		navigate("/Login");
+	};
 
 	useEffect(() => {
 		cargarCanciones();
 	}, [filtroBusqueda]);
+
+	useEffect(() => {
+		console.log("Canciones ha cambiado");
+		console.log(canciones);
+		renderizacionCards(canciones);
+	}, [canciones]);
 
 	// Apenas cargue la página por primera vez, se llamará a un método que cargue las canciones
 	useEffect(() => {
@@ -42,24 +53,36 @@ const HomeAdmin = () => {
 
 	return (
 		<div>
-			<SearchBar setFiltroBusqueda={setFiltroBusqueda} filtroBusqueda={filtroBusqueda} />
-			{/* <FormSubirImg /> */}
 			<div className="Register">
-			<NavLink className="InputSelect" to="/inserSongs">Insertar Canción</NavLink> 
-			<br></br><br></br>
-			<NavLink className="InputSelect" to="/inserArtist">Insertar Artista</NavLink>
-			<br></br><br></br>
-			<NavLink className="InputSelect" to="/insertAlbum">Insertar Album</NavLink>
-			<br></br><br></br>
-			<NavLink className="InputSelect" to="/InserGenero">Insertar Género</NavLink>
-			<br></br><br></br>
+				<button className="InputSelect" onClick={cerrarSesion}>
+					Cerrar sesión
+				</button>
 			</div>
-			<div className="container">
-				{canciones.map((item, index) =>
-					// <Songs infoCancion={item} key={item.isrc} />
-					renderizacionCards(item, index)
-				)}
+
+			<SearchBar setFiltroBusqueda={setFiltroBusqueda} filtroBusqueda={filtroBusqueda} />
+			<div className="Register">
+				<NavLink className="InputSelect" to="/inserSongs">
+					Insertar Canción
+				</NavLink>
+				<br></br>
+				<br></br>
+				<NavLink className="InputSelect" to="/inserArtist">
+					Insertar Artista
+				</NavLink>
+				<br></br>
+				<br></br>
+				<NavLink className="InputSelect" to="/insertAlbum">
+					Insertar Album
+				</NavLink>
+				<br></br>
+				<br></br>
+				<NavLink className="InputSelect" to="/InserGenero">
+					Insertar Género
+				</NavLink>
+				<br></br>
+				<br></br>
 			</div>
+			<div className="container">{canciones.map((item, index) => renderizacionCards(item, index))}</div>
 		</div>
 	);
 };

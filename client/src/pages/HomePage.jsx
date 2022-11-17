@@ -5,12 +5,14 @@ import Songs from "../components/Songs";
 import ArtistsCard from "../components/ArtistsCard";
 import AlbumCard from "../components/AlbumCard";
 import SearchBar from "../components/SearchBar";
-
+import { Routes, Route, useNavigate } from "react-router-dom";
 import { CancionesContext } from "../context/CancionesContext";
 
 const HomePage = () => {
 	const { canciones, loadingCanciones, cargarCanciones, filtroBusqueda, setFiltroBusqueda } =
 		useContext(CancionesContext);
+
+	const navigate = useNavigate();
 
 	const renderizacionCards = (item, index) => {
 		if (filtroBusqueda.buscarPor === "canciones") {
@@ -21,6 +23,10 @@ const HomePage = () => {
 		} else {
 			return <AlbumCard infoAlbum={item} key={index} />;
 		}
+	};
+
+	const cerrarSesion = () => {
+		navigate("/Login");
 	};
 
 	useEffect(() => {
@@ -38,6 +44,11 @@ const HomePage = () => {
 
 	return (
 		<div>
+			<div className="Register">
+				<button className="InputSelect" onClick={cerrarSesion}>
+					Cerrar sesión
+				</button>
+			</div>
 			<SearchBar setFiltroBusqueda={setFiltroBusqueda} filtroBusqueda={filtroBusqueda} />
 			{/* <FormSubirImg /> */}
 			<div className="container">

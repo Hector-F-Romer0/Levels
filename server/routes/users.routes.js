@@ -1,7 +1,5 @@
 import { Router } from "express";
-
 import { check } from "express-validator";
-
 import { existeIdUsuario } from "../helpers/dbValidators.js";
 import { validarCampos } from "../middlewares/validarCampos.js";
 

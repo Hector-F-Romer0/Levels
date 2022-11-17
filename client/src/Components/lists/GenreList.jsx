@@ -4,7 +4,7 @@ import { getIdGeneroYFiltrarRequest } from "../../api/searchs.api";
 import { CancionesContext } from "../../context/CancionesContext";
 
 const GenreList = () => {
-	const { setCanciones } = useContext(CancionesContext);
+	const { setCanciones, setLoadingCanciones } = useContext(CancionesContext);
 
 	const [generos, setGeneros] = useState([]);
 	const [loading, setLoading] = useState();
@@ -25,10 +25,10 @@ const GenreList = () => {
 	};
 
 	const filtrarPorGenero = async (genero) => {
-		setLoading(true);
+		setLoadingCanciones(true);
 		const res = await getIdGeneroYFiltrarRequest(genero);
 		setCanciones(res.data);
-		setLoading(false);
+		setLoadingCanciones(false);
 	};
 
 	const handleChange = (e) => {
@@ -37,14 +37,12 @@ const GenreList = () => {
 
 	return (
 		<div className="Registerfiltro">
-			<h1 className="textofiltro">
-				Filtrado de canciones por género. 
-				</h1> 
-				<select className="InputSelect" onChange={handleChange}>
-					{generos.map((item) => {
-						return <option key={item.idGenero}>{item.nombreGenero}</option>;
-					})}
-				</select>
+			<h1 className="textofiltro">Filtrado de canciones por género.</h1>
+			<select className="InputSelect" onChange={handleChange}>
+				{generos.map((item) => {
+					return <option key={item.idGenero}>{item.nombreGenero}</option>;
+				})}
+			</select>
 		</div>
 	);
 };

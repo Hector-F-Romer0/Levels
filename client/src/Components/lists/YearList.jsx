@@ -4,7 +4,7 @@ import { getYearRequest } from "../../api/songs.api";
 import { CancionesContext } from "../../context/CancionesContext";
 
 const YearList = () => {
-	const { setCanciones } = useContext(CancionesContext);
+	const { setCanciones, setLoadingCanciones } = useContext(CancionesContext);
 	const [years, setYears] = useState([]);
 	const [loading, setLoading] = useState();
 
@@ -20,10 +20,10 @@ const YearList = () => {
 	};
 
 	const filtrarPorAño = async (year) => {
-		setLoading(true);
+		setLoadingCanciones(true);
 		const res = await getCancionesHomeYearRequest(year);
 		setCanciones(res.data);
-		setLoading(false);
+		setLoadingCanciones(false);
 	};
 
 	const handleChange = (e) => {
@@ -32,14 +32,12 @@ const YearList = () => {
 
 	return (
 		<div className="Registerfiltro">
-			<h1 className="textofiltro">
-				Filtrado de canciones por año. 
-				</h1>
-				<select className="InputSelect" onChange={handleChange}>
-					{years.map((item) => {
-						return <option key={item.year}>{item.year}</option>;
-					})}
-				</select>
+			<h1 className="textofiltro">Filtrado de canciones por año.</h1>
+			<select className="InputSelect" onChange={handleChange}>
+				{years.map((item) => {
+					return <option key={item.year}>{item.year}</option>;
+				})}
+			</select>
 		</div>
 	);
 };

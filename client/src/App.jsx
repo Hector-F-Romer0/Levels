@@ -37,6 +37,7 @@ const App = () => {
 						<Route path="/songs/:isrc" element={<Login />} />
 						<Route path="/InserGenero" element={<InserGenero />} />
 						<Route path="/HomeAdmin" element={<HomeAdmin />} />
+						<Route path="/HomePage" element={<HomePage />} />
 					</Routes>
 					<Footer />
 				</BrowserRouter>

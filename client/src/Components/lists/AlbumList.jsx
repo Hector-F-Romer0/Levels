@@ -4,7 +4,7 @@ import { getIdAlbumYFiltrarRequest } from "../../api/searchs.api";
 import { CancionesContext } from "../../context/CancionesContext";
 
 const AlbumList = () => {
-	const { setCanciones } = useContext(CancionesContext);
+	const { setCanciones, setLoadingCanciones } = useContext(CancionesContext);
 
 	const [albumes, setAlbumes] = useState([]);
 	const [loading, setLoading] = useState();
@@ -21,10 +21,10 @@ const AlbumList = () => {
 	};
 
 	const filtrarPorAlbum = async (album) => {
-		setLoading(true);
+		setLoadingCanciones(true);
 		const res = await getIdAlbumYFiltrarRequest(album);
 		setCanciones(res.data);
-		setLoading(false);
+		setLoadingCanciones(false);
 	};
 
 	const handleChange = (e) => {
@@ -33,14 +33,12 @@ const AlbumList = () => {
 
 	return (
 		<div className="Registerfiltro">
-			<h1 className="textofiltro">
-				Filtrado de canciones por álbum. 
-				</h1> 
-				<select className="InputSelect" onChange={handleChange}>
-					{albumes.map((item) => {
-						return <option key={item.idAlbum}>{item.titulo}</option>;
-					})}
-				</select>
+			<h1 className="textofiltro">Filtrado de canciones por álbum.</h1>
+			<select className="InputSelect" onChange={handleChange}>
+				{albumes.map((item) => {
+					return <option key={item.idAlbum}>{item.titulo}</option>;
+				})}
+			</select>
 		</div>
 	);
 };

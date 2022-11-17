@@ -17,10 +17,9 @@ const Login = () => {
 
 	const loginUsuario = async (data) => {
 		try {
-			console.log("Entré al loginUsuario");
 			const existe = await loginUsuarioRequest(data);
 			const idUsuario = await existe.data.numId;
-
+			console.log(existe);
 			if (existe.status === 200) {
 				console.log("SI EXISTE");
 				return idUsuario;
@@ -40,13 +39,16 @@ const Login = () => {
 	};
 
 	const OnSubmit = async (data) => {
-		// loginUsuario(data);
-		console.log(data);
-		const idUsuario = await loginUsuario(data);
-		console.log(idUsuario);
-		const usuario = await getInformacionUsuario(idUsuario);
+		const infoUsuario = await loginUsuario(data);
+		console.log(infoUsuario);
+		const usuario = await getInformacionUsuario(infoUsuario);
 		setData(usuario);
-		navigate("/HomeAdmin");
+
+		if (usuario.tipo === "Usuario") {
+			navigate("/HomePage");
+		} else {
+			navigate("/HomeAdmin");
+		}
 	};
 
 	return (
