@@ -28,7 +28,7 @@ yarn-error.log*
 
 # IGNORANDO RUTAS DEL SERVER
 /server/node_modules
-/server/db/uploads
+/server/uploads/
 
 /client/env.json
 /client/envP.json

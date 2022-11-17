@@ -106,7 +106,7 @@ const InserCanciones = () => {
 					<p className="Error">El campo Fecha de lanzamiento es requerido</p>
 				)}
 
-				<h1 className="UserText">Id del album</h1>
+				<h1 className="UserText">Nombre del álbum</h1>
 				<select
 					className="InputSong"
 					{...register("idAlbum", {

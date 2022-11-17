@@ -5,7 +5,7 @@ const AlbumCard = ({ infoAlbum }) => {
 	return (
 		<div className="card">
 			<div className="imgCard">
-				<img src={`${apiUrlupload}/img/Indeleble Album.jpg`} className="img" alt="img" />
+				<img src={`${apiUrlupload}/img/album/${infoAlbum.fotoAlbum}`} className="img" alt="img" />
 			</div>
 			<div className="infoImg">
 				<h1>{infoAlbum.titulo}</h1>

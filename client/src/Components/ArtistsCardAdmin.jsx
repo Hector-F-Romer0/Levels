@@ -8,7 +8,7 @@ const ArtistsCard = ({ infoArtista }) => {
 	return (
 		<div className="cardArtist">
 			<div className="imgCard">
-				<img src={`${apiUrlupload}/img/Indeleble Album.jpg`} className="img" alt="img" />
+				<img src={`${apiUrlupload}/img/artist/${infoArtista.fotoArtista}`} className="img" alt="img" />
 			</div>
 			<div className="infoImg">
 				<h1>{infoArtista.nombreArtistico}</h1>
@@ -20,7 +20,8 @@ const ArtistsCard = ({ infoArtista }) => {
 					<h2>Año de fundación: ${infoArtista.fechaNacimiento}</h2>
 				) : (
 					<h2>Fecha nacimiento: {infoArtista.fechaNacimiento}</h2>
-				)} <button className="InputSelect2">Actualizar Artista</button>
+				)}{" "}
+				<button className="InputSelect2">Actualizar Artista</button>
 				<button className="InputSelect2">Eliminar Artista</button>
 			</div>
 		</div>

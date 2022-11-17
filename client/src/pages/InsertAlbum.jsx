@@ -121,7 +121,6 @@ const InsertAlbum = () => {
 				{errors.fechaLanzamiento?.type === "required" && (
 					<p className="Error">El campo Fecha de lanzamiento es requerido</p>
 				)}
-
 				<label className="UserText">Genero</label>
 				<br></br>
 				<select
@@ -133,7 +132,8 @@ const InsertAlbum = () => {
 						return <option key={item.idGenero}>{item.nombreGenero}</option>;
 					})}
 				</select>
-
+				<br />
+				<br />
 				<label className="textRegis">Discografía</label>
 				<br></br>
 				<input
@@ -143,11 +143,10 @@ const InsertAlbum = () => {
 						required: true,
 					})}></input>
 				<br></br>
+				<br />
 				{errors.discografia?.type === "required" && <p className="Error">El campo Discografia es requerido</p>}
-
 				<label htmlFor="file">Imágen del album</label>
 				<input type="file" name="imgAlbum" id="file" accept=".jpg" onChange={selectedImg} />
-
 				<button type="Submit" className="BotonRegis">
 					Insertar
 				</button>

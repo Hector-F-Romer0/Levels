@@ -13,10 +13,10 @@ const Navbar = () => {
 				<ul className="navUl">
 					{data === "" ? <h1>Hossssla</h1> : <h4>{data.nombreUsuario}</h4>}
 					<li>
-						<NavLink className="active" to="/">
+						<NavLink className="active" to="/HomeAdmin">
 							Inicio
 						</NavLink>
-						<NavLink className="active" to="/user/">
+						<NavLink className="active" to="/userView">
 							Usuario
 						</NavLink>
 					</li>
